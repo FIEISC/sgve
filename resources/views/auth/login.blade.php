@@ -30,6 +30,8 @@
 
   <button type="submit" class="btn btn-primary btn-block">Entrar</button>
 </form>
+<br>
+<p>Eres admin? <a href="{{ route('loginAdmin') }}">Entra aquí</a></p>
 </div>
 
 @endsection

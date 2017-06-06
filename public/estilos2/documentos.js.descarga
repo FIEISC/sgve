@@ -1,0 +1,204 @@
+function showSolicitud(id_proyecto,cuenta){
+	window.location = site_url+'/'+'proyectos/rptSolicitud/?idProyecto='+id_proyecto+'&cuenta='+cuenta;
+}
+
+function showCartaPresentacion(id_proyecto,cuenta){
+	window.location = site_url+'/'+'proyectos/rptCartaPresentacion/?idProyecto='+id_proyecto+'&cuenta='+cuenta;
+}
+
+function showFrmInformeParcial1(idProyecto,numCuenta){
+	loader.create();
+	$.ajax({
+		url : site_url+'/alumnos/frmInformeParcial',
+		type : 'POST',
+		data : {id_proyecto : idProyecto, cuenta : numCuenta, ninforme : 1 },
+		success: function(myhtml){
+			loader.close();
+			supermodal.setMaxWidth(700);
+			supermodal.setWidth("80%");
+			supermodal.setTitle('Editar la información del primer informe parcial');	
+			supermodal.setBody(myhtml);
+			supermodal.setFooter('');		
+			supermodal.showBox();
+			datePickerUtil.loadDates();
+		}
+	});
+}
+
+function showFrmInformeFinal(idProyecto,numCuenta){
+	loader.create();
+	$.ajax({
+		url : site_url+'/alumnos/showFrmInformeFinal',
+		type : 'POST',
+		data : {id_proyecto : idProyecto, cuenta : numCuenta, ninforme : 0 },
+		success: function(myhtml){
+			loader.close();
+			supermodal.setMaxWidth(700);
+			supermodal.setWidth("80%");
+			supermodal.setTitle('Editar la información del informe final');	
+			supermodal.setBody(myhtml);
+			supermodal.setFooter('');		
+			supermodal.showBox();
+			datePickerUtil.loadDates();
+		}
+	});
+}
+
+function guardarInformeParcial(idProyecto,numCuenta,nInforme){
+	myform = $("#frmInformeParcial");
+	myform.validate({
+		showErrors: function(errorMap, errorList) {
+		  // Clean up any tooltips for valid elements
+		  $.each(this.validElements(), function (index, element) {
+			  var $element = $(element);
+			  $element.data("title", "") // Clear the title - there is no error associated anymore
+				  .removeClass("error")
+				  .tooltip("destroy");
+		  });
+		
+		  // Create new tooltips for invalid elements
+		  $.each(errorList, function (index, error) {
+			  var $element = $(error.element);
+		
+			  $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+				  .data("title", error.message)
+				  .addClass("error")
+				  .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+		  });
+		}
+	});
+	
+	if(myform.valid()){
+		loader.create();	
+		var myInfo = new Object();
+		$('.informeparcialDato').each(function(){
+			myInfo[$(this).attr('name')] = $(this).val();
+		});
+		
+		$.ajax({
+			url : site_url+'/alumnos/guardarInformeParcial',
+			type : 'POST',
+			dataType : 'json',
+			data : {id_proyecto : idProyecto, cuenta : numCuenta, ninforme : nInforme, informacion : myInfo},
+			success: function(data){
+				loader.close();
+				if(data.result){
+					supermodal.closeBox();
+				}
+				noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+			}
+		});
+	}else{
+		$('.required.error:first',myform).focus();
+	}
+}
+
+
+function showFrmPlandeTrabajo(idproyecto,al_cuenta)
+{
+	loader.create();
+	$.ajax({
+			url: site_url+'/alumnos/showFrmPlandeTrabajo',
+			type: 'POST',
+			data: {idproyecto: idproyecto,al_cuenta:al_cuenta},
+		})
+		.done(function(data) {
+			loader.close();
+			supermodal.setMaxWidth(700);
+			supermodal.setWidth("80%");
+			supermodal.setTitle('Editar la información del plan de trabajo');
+			supermodal.setBody(data);
+			supermodal.showBox();
+
+		})
+		.fail(function() {
+			
+		})
+		.always(function() {
+			
+		});
+}
+
+function guardarPlandeTrabajo(idproyecto,al_cuenta)
+{
+	myform = $("#frmPlandeTrabajo");
+	myform.validate({
+		showErrors: function(errorMap, errorList) {
+		  // Clean up any tooltips for valid elements
+		  $.each(this.validElements(), function (index, element) {
+			  var $element = $(element);
+			  $element.data("title", "") // Clear the title - there is no error associated anymore
+				  .removeClass("error")
+				  .tooltip("destroy");
+		  });
+		
+		  // Create new tooltips for invalid elements
+		  $.each(errorList, function (index, error) {
+			  var $element = $(error.element);
+		
+			  $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+				  .data("title", error.message)
+				  .addClass("error")
+				  .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+		  });
+		}
+	});
+	
+	if(myform.valid()){
+		loader.create();
+		var myInfo = new Object();
+		$(".planData").each(function(){
+		 myInfo[$(this).attr('name')] = $(this).val();
+		});
+		$.ajax({
+			url: site_url+"/alumnos/guardarPlandeTrabajo",
+			type: 'POST',
+			dataType: 'JSON',
+			data: {idproyecto: idproyecto,al_cuenta:al_cuenta,plan:myInfo},
+		})
+		.done(function(data) {
+			loader.close();
+			if (data.result)
+			{
+				supermodal.closeBox();
+			}
+			noty({"text":data.message, "layout":"topRight", "type":data.status});
+			
+		})
+		.fail(function() {
+			
+		})
+		.always(function() {
+			
+		});
+		
+
+	}else{
+		$('.required.error:first',myform).focus();
+	}
+}
+
+
+
+function showInformeParcial1(id_proyecto,cuenta){
+	window.location = site_url+'/'+'proyectos/rptInformeParcial/?idProyecto='+id_proyecto+'&cuenta='+cuenta+'&ninforme=1';
+}
+
+function showInformeFinal(id_proyecto,cuenta){
+	window.location = site_url+'/'+'proyectos/rptInformeFinal/?idProyecto='+id_proyecto+'&cuenta='+cuenta+'&ninforme=0';
+}
+
+
+function showCartaTerminacion(id_proyecto,cuenta){
+	window.location = site_url+'/'+'proyectos/rptCartaTerminacion/?idProyecto='+id_proyecto+'&cuenta='+cuenta;
+}
+
+function showPlandeTrabajo(id_proyecto,cuenta){
+	window.location = site_url+'/'+'proyectos/rptPlandeTrabajo/?idProyecto='+id_proyecto+'&cuenta='+cuenta;
+}
+
+
+function showQuestionario(id_proyecto,cuenta)
+{
+	window.location = site_url+'/'+'alumnos/evaluacion/';//?idProyecto='+id_proyecto+'&cuenta='+cuenta;	
+}

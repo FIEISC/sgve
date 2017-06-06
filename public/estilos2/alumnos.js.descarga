@@ -1,0 +1,262 @@
+function showFrm(idProyecto,nombreProyecto){
+	var myhtml = '<div class="input-group" style="margin-bottom:8px;"><span class="input-group-addon">Correo electrónico:</span><input type="text" class="form-control addAlumno-dato" name="email" value="" /></div>';
+	myhtml += '<div class="input-group" style="margin-bottom:8px;"><span class="input-group-addon">Nombre del asesor del plantel:</span><input type="text" class="form-control addAlumno-dato" name="asesor" value="" /></div>';
+	myhtml += '<div class="row-fluid"><div class="alert alert-warning text-center">Deberás ingresar un <strong>correo electrónico</strong> válido ya que se te enviará la notificación de autorización o rechazo a éste mismo.</div></div>';
+	supermodal.setWidth(800);
+	supermodal.setTitle('Registrarse al proyecto '+nombreProyecto);
+	supermodal.setBody(myhtml);
+	supermodal.setFooter('<div class="text-right"><button class="btn btn-info" onclick="enviarSolicitudAlPlantel('+idProyecto+');"><span class="glyphicon glyphicon-ok"></span>&nbsp;Enviar Solicitud</button></div>');
+	supermodal.showBox();
+}
+
+function empresaChanged()
+{
+	$.ajax({url: site_url+"/alumnos/obtenerEmpresa",
+		type: 'POST',
+		dataType: 'json',
+		data:{id_empresa : parseInt($('#empresasRegistradas').val())},
+		success: function(result){
+			$('#ins_nombre').val(result.ins_nombre);
+        	$('#ins_id_sistema').val(result.ins_id_sistema);
+        	$('#ins_id_sector').val(result.ins_id_sector);
+        	$('#ins_titular').val(result.ins_titular);
+        	$('#ins_email').val(result.ins_email);
+        	$('#dir_direccion').val(result.dir_direccion);
+        	$('#dir_colonia').val(result.dir_colonia);
+        	$('#dir_estado').val(result.dir_estado);
+        	$('#dir_municipio').val(result.dir_municipio);
+        	$('#dir_localidad').val(result.dir_localidad);
+        	$('#dir_cp').val(result.dir_cp);
+        	$('#dir_telefono').val(result.dir_telefono);
+        	$('#dir_fax').val(result.dir_fax);
+    	}
+	});
+}
+
+function enviarSolicitudAlPlantel(idProyecto){
+	loader.create();
+	var myInfo = new Object();
+	$('.addAlumno-dato').each(function(){
+		myInfo[$(this).attr('name')] = $(this).val();
+	});
+
+	$.ajax({
+		url : site_url+'/alumnos/enviarSolicitudAlPlantel',
+		type : 'POST',
+		dataType : 'json',
+		data : {id_proyecto : idProyecto, informacion : myInfo},
+		success: function(data){
+			supermodal.closeBox();
+			loader.close();
+			$('#seccion_proyectoinscrito').html(data.myhtml);
+			$('#seccion_proyectosactivos').html(data.myhtml_activos);
+			noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+		}
+	});
+}
+
+function cancelarSolicitud(idProyecto){
+	jConfirm('¿Estás seguro de que queires cancelar la solicitud que enviaste para este proyecto?','Confirmar petición',function(r){
+		if(r){
+			loader.create();
+			$.ajax({
+				url : site_url+'/alumnos/cancelarSolicitud',
+				type : 'POST',
+				dataType : 'json',
+				data : {id_proyecto : idProyecto},
+				success: function(data){
+					loader.close();
+					$('#seccion_proyectoinscrito').html(data.myhtml);
+					$('#seccion_proyectosactivos').html(data.myhtml_activos);
+					noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+				}
+			});
+		}
+	});
+}
+
+function showFrmCrearProyecto(){
+	loader.create();
+	$.ajax({
+		url : site_url+'/alumnos/showFrmCrearProyecto',
+		type : 'POST',
+		success: function(myhtml){
+			loader.close();
+			supermodal.setWidth(900);
+			supermodal.setTitle('Registrar un nuevo proyecto');
+			supermodal.setBody(myhtml);
+			supermodal.setFooter('');
+			supermodal.showBox();
+			$("#empresasRegistradas").select2();
+		}
+	});
+}
+
+function registrarProyecto() {
+		var map = new Object();
+		var error = false;
+		loader.create();
+		$('#btnAddProyecto').attr('disabled','disabled');
+		if ($('#empresasRegistradas').val() == false) {
+			error = true;
+			$('#empresasRegistradas').addClass('alert-danger');
+			noty
+		} else {
+			$('#empresasRegistradas').removeClass('alert-danger');
+		}
+		$.each($('input.necesario'), function (index, value){
+			if($(this).val() !== "" || $(this).hasClass('required') == false) {
+				map[$(this).attr('name')]=$(this).val();
+				$(this).removeClass('alert-danger');
+			} else {
+				$(this).addClass('alert-danger');
+				error = true;
+			}
+		});
+		$.each($('select.necesario'), function (index, value){
+			if($(this).val() !== "" || $(this).hasClass('required') == false ) {
+				map[$(this).attr('name')]=$(this).val();
+				$(this).removeClass('alert-danger');
+			} else {
+				$(this).addClass('alert-danger');
+				error = true;
+			}
+		});
+		$.each($('textarea.necesario'), function (index, value){
+			if($(this).val() !== "" || $(this).hasClass('required') == false) {
+				map[$(this).attr('name')]=$(this).val();
+				$(this).removeClass('alert-danger');
+			} else {
+				$(this).addClass('alert-danger');
+				error = true;
+			}
+		});
+		if (error) {
+			loader.close();
+			noty({"text":"Debes llenar los campos que se te han marcado de rojo para continuar", "layout":"topRight", "type":"error"});
+			$('#btnAddProyecto').removeAttr('disabled');
+		} else {
+			console.log(map);
+			$.ajax({
+				url: site_url+'/alumnos/registrarProyectoAlumno/',
+				type: 'POST',
+				dataType: 'json',
+				data: {datos: map}
+			})
+			.done(function(result) {
+				console.log("success");
+				supermodal.closeBox();
+				location.reload();
+				debugger;
+				noty({"text":"Se ha guardado tu proyecto", "layout":"topRight", "type":"success"});
+			})
+			.fail(function(result) {
+				console.log("error");
+				noty({"text":"Hubo un error al guardar tu proyecto si el problema persiste notificalo a tu plantel", "layout":"topRight", "type":"error"});
+			})
+			.always(function() {
+				$('#btnAddProyecto').removeAttr('disabled');
+				console.log("complete");
+				loader.close();
+			});
+
+		}
+}
+
+function registrarProyectoFromSolicitud(){
+	myform = $("#frmAgregarProyecto");
+	myform.validate({
+		showErrors: function(errorMap, errorList) {
+		  // Clean up any tooltips for valid elements
+		  $.each(this.validElements(), function (index, element) {
+			  var $element = $(element);
+			  $element.data("title", "") // Clear the title - there is no error associated anymore
+				  .removeClass("error")
+				  .tooltip("destroy");
+		  });
+
+		  // Create new tooltips for invalid elements
+		  $.each(errorList, function (index, error) {
+			  var $element = $(error.element);
+
+			  $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+				  .data("title", error.message)
+				  .addClass("error")
+				  .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+		  });
+		}
+	});
+
+	if(myform.valid()){
+		loader.create();
+		var myInfoEmpresa = new Object();
+		$('.inputAddEmpresa').each(function(){
+			myInfoEmpresa[$(this).attr('name')] = $(this).val();
+		});
+
+		var myInfoProyecto = new Object();
+		$('.form-baseproyecto').each(function(){
+			myInfoProyecto[$(this).attr('name')] = $(this).val();
+		});
+
+		var myInfoFechas = new Object();
+		$('.frm-fechas').each(function(){
+			myInfoFechas[$(this).attr('name')] = $(this).val();
+		});
+
+
+		$('#btnAddProyecto').attr('disabled','disabled');
+
+		$.ajax({
+			url : site_url+'/alumnos/registrarProyectoFromSolicitud/',
+			type : 'POST',
+			dataType : 'json',
+			data : {infoEmpresa : myInfoEmpresa, infoProyecto : myInfoProyecto, alumnoAsesor : $('#alumno_asesor').val(), alumnoEmail : $('#alumno_email').val(), infoFechas: myInfoFechas },
+			success : function(data){
+				loader.close();
+				$('#btnAddProyecto').removeAttr('disabled');
+				if(data.result){
+					$('#seccion_proyectoinscrito').html(data.myhtml);
+					supermodal.closeBox();
+				}
+				if(data.result_params_vacios==null){
+					noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+				}else{
+					if(data.result_params_vacios.length==0){
+						noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+					}else{
+						for(i = 0; i < data.result_params_vacios.length; ++i){
+							noty({"text":"El campo "+data.result_params_vacios[i]+" es obligatorio", "layout":"topRight", "type":data.result_status});
+						}
+					}
+				}
+
+			}
+		});
+	}else{
+		console.log(showErrors.errorMap);
+		$('.required.error:first',myform).focus();
+	}
+}
+
+function alumnoGuardarInformacionContacto(){
+
+	loader.create();
+	var mayInfo = new Object();
+	$('.alProyInscritoEditInput').each(function(){
+		mayInfo[$(this).attr('name')] = $(this).val();
+	});
+
+	$.ajax({
+		url : site_url+'/alumnos/guardarMiInformacionDeContacto/',
+		type : 'POST',
+		dataType : 'json',
+		data : {infoAlumno : mayInfo},
+		success : function(data){
+			loader.close();
+			noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+		}
+	});
+
+}
+

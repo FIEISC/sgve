@@ -1,0 +1,22 @@
+.no-border-radius{
+	border-radius:0px;
+	-webkit-border-radius:0px;
+	-moz-border-radius:0px;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: #bbddff;
+}
+
+.table{
+	background-color:white;
+}
+
+.table tr{
+	vertical-align:middle;
+}
+
+.select2-container{
+	background-color:#fff;
+}

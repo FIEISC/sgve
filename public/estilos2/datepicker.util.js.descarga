@@ -1,0 +1,21 @@
+$(document).ready(function(e) {
+    datePickerUtil.loadDates();
+});
+
+var datePickerUtil = {
+	loadDates : function(){
+		$('.jsFecha').each(function(index, element) {
+            $(element).datepicker({
+				yearRange: '2013:2020',
+				dateFormat: 'yy-mm-dd',
+				changeMonth: true,
+				changeYear: true,
+				numberOfMonths: 1
+			});
+			
+			$(element).parent('.input-group').find('button').click(function(){
+				$(element).val('');
+			});
+        });
+	}
+};

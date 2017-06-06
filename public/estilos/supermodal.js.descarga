@@ -1,0 +1,100 @@
+$(document).ready(function(e) {
+    supermodal.init();
+});
+
+var supermodal = {
+	objr : {},
+	objmodal : null,
+	myid : 'supermodal',
+	myFooter : '',
+
+	init : function (){
+		this.createBox();
+
+		this.on("a[rel^=superbox]");
+	},
+	
+	setMaxWidth : function(width){
+		var modal = $(".modal-dialog", this.objmodal);
+		modal.css({"max-width" : width});
+	},
+	
+	setWidth : function(width){
+		var modal = $(".modal-dialog", this.objmodal);
+		modal.width(width);
+	},
+	
+	setTitle : function(title,settings){		
+		var body = $(".modal-title", this.objmodal);
+		body.html('<span class="glyphicon glyphicon-new-window"></span>&nbsp;'+title);
+	},
+	
+	setIframe : function (href){
+		var body = $(".modal-body", this.objmodal);
+		body.html('<iframe src="'+href+'" name="'+href+'" style="width:100%;height:93.3%" frameborder="0" scrolling="auto" hspace="0"></iframe>');
+	},
+	
+	setBody : function (outputHtml){
+		var body = $(".modal-body", this.objmodal);
+		body.html(outputHtml);
+	},
+	
+	setFooter : function(outputHtml){
+		var body = $(".modal-footer", this.objmodal);
+		body.html(outputHtml);
+	},
+
+	createBox : function (){
+		if (this.objmodal == null) {
+			var html = '';
+			html += '<div id="'+this.myid+'" class="modal fade">';
+			html +=		'<div class="modal-dialog">';
+			html +=			'<div class="modal-content">';
+			html +=				'<div class="modal-header">';
+			html +=					'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+			html +=					'<h4 class="modal-title">&nbsp;</h4>';
+			html +=				'</div>';
+			html +=				'<div class="modal-body">';
+			html +=				'</div>';
+			html +=				'<div class="modal-footer">';
+			html +=				'</div>';
+			html +=			'</div>';
+			html +=		'</div>';
+			html += '</div>';
+			  
+			$("body").append(html);
+			this.objmodal = $('#'+this.myid+'');
+		}
+	},
+	
+	showBox : function (){
+		this.objmodal.modal("show");
+	},
+
+	closeBox : function (){
+		this.objmodal.modal("hide");
+	},
+	
+	showWaitingFooter : function(){
+		var footerHtml = '';
+		footerHtml += 	'<div class="progress progress-striped active" style="">';
+		footerHtml += 		'<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">';
+		footerHtml += 			'<span class="sr-only">100% Complete</span>';
+		footerHtml += 		'</div>';
+		footerHtml += 	'</div>';
+		footerHtml +=	'<div class="text-center">';
+		footerHtml +=		'<span class="label label-info">Cargando...</span>';
+		footerHtml +=	'</div>';
+	
+		this.myFooter = $(".modal-footer", this.objmodal).html();
+		$(".modal-footer", this.objmodal).html(footerHtml);
+	},
+	
+	closeWaitingFooter : function(){
+		$(".modal-footer", this.objmodal).html(this.myFooter);
+	},
+
+	on : function (selector){
+		$(selector).on("click", this.eventClick);
+	}
+};

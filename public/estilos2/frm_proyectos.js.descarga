@@ -1,0 +1,163 @@
+function borrarSecCarreras(){
+	$('#sec-carrerashabilitadas').html('<div class="alert alert-danger text-center">Débe ingresar cuantas carreras quiere habilitar en este proyecto</div>');
+}
+
+function obtenerDireccionesFromEmpresa(idEmpresa){
+	loader.create();
+	$.ajax({
+		url : site_url+'/empresas/obtenerdirecciones/',
+		type : 'POST',
+		dataType : 'json',
+		data : {id_empresa : idEmpresa},
+		success: function(data){
+			loader.close();
+			if(data.result){
+				$('#sec-direcciones').html(data.result_direcciones);
+			}else{
+				$('#sec-direcciones').html('<div><a href="javascript:void(0);" title="" onclick="mostrarFrmAddDireccion('+idEmpresa+');"><big><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Agregar una nueva dirección</big></a></div><div class="alert alert-danger text-center">'+data.result_msg+'</div>');
+				noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+			}
+		}
+	});
+}
+
+function seleccionarDireccion(elemento){
+	if(!$(elemento).hasClass('active')){
+		$('.btn-direccion').removeClass('active');
+		$('.btn-direccion').removeClass('btn-success');
+		$('.btn-direccion').addClass('btn-default');
+
+		$(elemento).removeClass('btn-default');
+		$(elemento).addClass('active');
+		$(elemento).addClass('btn-success');
+
+		$('#pry_id_direccion').val($(elemento).attr('id_direccion'));
+	}
+}
+
+function mostrarFrmAddDireccion(idEmpresa){
+	loader.create();
+	$.ajax({
+		url : site_url+'/empresas/showfrmdirecciones/',
+		type : 'POST',
+		data : {id_empresa : idEmpresa},
+		success: function(myhtml){
+			loader.close();
+			supermodal.setWidth(800);
+			supermodal.setTitle('Agregar una nueva dirección');
+			supermodal.setBody(myhtml);
+			supermodal.setFooter('');
+			supermodal.showBox();
+
+		}
+	});
+}
+
+function agregarDireccion(idEmpresa){
+	loader.create();
+	$('.btn-frm').attr('disabled','disabled');
+	var myData = new Object();
+	myData['id_empresa'] = idEmpresa;
+	$('.form-direccion').each(function(index, element) {
+        myData[$(this).attr('name')] = $(this).val();
+    });
+	$.ajax({
+		url : site_url+'/empresas/agregarDireccion/',
+		type : 'POST',
+		dataType : 'json',
+		data : myData,
+		success: function(data){
+			loader.close();
+			$('.btn-frm').removeAttr('disabled');
+			if(data.result){
+				$('.alert.alert-danger',$('#sec-direcciones')).remove();
+				$('#sec-direcciones').append(data.result_html);
+				supermodal.closeBox();
+			}
+			noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+		}
+	});
+}
+
+function agregarCarrera(){
+	loader.create();
+	myclavepronad = ($('#pry_clavepronad')!=null)? $('#pry_clavepronad').val() : 0;
+	$.ajax({
+		url : site_url+'/proyectos/crearCarreras/',
+		type : 'POST',
+		data : {clavepronad : myclavepronad,cuantas : $('#car_ncarreras').val()},
+		success: function(myhtml){
+			loader.close();
+			$('#sec-carrerashabilitadas').append(myhtml);
+			datePickerUtil.loadDates();
+		}
+	});
+}
+
+function eliminar_carrera_from_proyecto(_idProyecto,_plan,_area,idElement){
+	loader.create();
+	$.ajax({
+		url : site_url+'/proyectos/eliminarCarrera/',
+		type : 'POST',
+		dataType : 'json',
+		data : {id_proyecto : _idProyecto, plan : _plan, area : _area},
+		success: function(data){
+			if(data.result)
+				$('#'+idElement).remove();
+			loader.close();
+			noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+		}
+	});
+}
+
+function agregar_proyecto(idProyecto){
+	loader.create();
+	$('.btn-frm').attr('disabled','disabled');
+
+	var myDataBase = new Object();
+	myDataBase['id_proyecto'] =  (idProyecto==null)? 0 : idProyecto;
+
+	$('.form-baseproyecto').each(function(index, element) {
+    	myDataBase[$(this).attr('name')] = $(this).val();
+    });
+
+	var myClavePronad = ($('#pry_clavepronad')!=null)? $('#pry_clavepronad').val() : 0;
+
+	var myCarreras = new Array();
+	$('.carh').each(function(index, element) {
+        obj = new Object();
+		obj['carrera'] = $('.carh-carrera',element).val();
+		obj['nprestadores'] = $('.carh-prestadores',element).val();
+		obj['fechainicio'] = $('.carh-fechainicio',element).val();
+		obj['fechafinal'] = $('.carh-fechafinal',element).val();
+		obj['dias'] = $('.carh-dias',element).val();
+		obj['horarios'] = $('.carh-horarios',element).val();
+		myCarreras.push(obj);
+    });
+	$.ajax({
+		url : site_url+'/proyectos/doAgregarEditar/',
+		type : 'POST',
+		dataType : 'json',
+		data : {clavepronad : myClavePronad, infobase : myDataBase, infocarreras : myCarreras},
+	})
+	.done(function(data){
+			loader.close();
+			if(data.result){
+				if(data.result_action=='insert'){
+					$('.form-control').val('');
+				}
+				$('.carh').remove();
+				$('#sec-carrerashabilitadas').append(data.result_carrerashtml);
+			}
+
+			$('.btn-frm').removeAttr('disabled');
+
+			if(data.result_params_vacios==null){
+				noty({"text":data.result_msg, "layout":"topRight", "type":data.result_status});
+			}else{
+				for(i = 0; i < data.result_params_vacios.length; ++i){
+					noty({"text":"El campo "+data.result_params_vacios[i]+" es obligatorio", "layout":"topRight", "type":data.result_status});
+				}
+			}
+		})
+}

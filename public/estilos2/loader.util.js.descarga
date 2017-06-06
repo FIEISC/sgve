@@ -1,0 +1,18 @@
+/**
+ * Obj para crear un loader cuando se use Ajax
+ */
+var loader = {
+	create: function(wrapper){
+		var css = 'style="width: 250px; position: fixed;left:100%; margin-left:-270px; top:0px; background-color:#F9EDBE; padding:5px 10px; -webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; z-index:999999;"',
+		html = '<div id="ajax-loader" class="text-center" {css}> <img src="'+base_url+'application/assets/images/ajax/ajax-loaders/ajax-loader-7.gif"><div>Cargando...</div></div>';
+
+		if (wrapper){
+			$(wrapper).append(html.replace("{css}", ""));
+		}else{
+			$("body").append(html.replace("{css}", css));
+		}
+	},
+	close: function(){
+		$("#ajax-loader").remove();
+	}
+};

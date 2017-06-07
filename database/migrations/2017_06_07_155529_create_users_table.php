@@ -11,11 +11,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom_docente');
-            $table->string('nom_cuenta')->unique();
+            $table->string('no_cuenta')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('rol');
-            $table->boolean('activo')->default(1);
+            $table->boolean('activo')->default(0);
 
             //Llave foranea de plantel!!!!!!!!!!!!!!!!!!!
             $table->integer('plantel_id')->unsigned();

@@ -20,11 +20,16 @@ class CreateViajesTable extends Migration
             $table->boolean('activo')->default(1);
             $table->string('compa');
 
-            //Laves foreaneas del docente que crea el viaje y el plantel al que pertenece!!!
+            //Laves foreaneas del docente que crea el viaje, el ciclo que se creo y la carrera al que pertenece!!!
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->integer('carrera_id')->references('id')->on('carreras')->onDelete('cascade');
+            $table->integer('carrera_id')->unsigned();
+            $table->foreign('carrera_id')->references('id')->on('carreras')->onDelete('cascade');
+
+            $table->integer('ciclo_id')->unsigned();
+            $table->foreign('ciclo_id')->references('id')->on('ciclos')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

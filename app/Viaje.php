@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace sgve;
 
 use Illuminate\Database\Eloquent\Model;
 

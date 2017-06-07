@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('/estilos/base.css') }}" media="screen">
 	<link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
 
+	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
+
 </head>
 <body>
 
@@ -40,6 +42,13 @@
 		<p>SIGESPI 2017 | Developed by Naty and Chuys :v <span class="glyphicon glyphicon-heart-empty"></span></p>
 	</div>
 </footer>
+
+<script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+<script src="/sweetalert/sweetalert.min.js"></script>
+@include('sweet::alert')
 	
 </body>
 </html>

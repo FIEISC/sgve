@@ -17,6 +17,15 @@
     <link rel="stylesheet" href="{{ asset('/estilos/nobootstrap.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/base.css') }}" media="screen">
 	<link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
+
+	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
+
+	{{--   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> --}}
+	<link rel="stylesheet" href="{{ asset('datepicker/css/bootstrap-datepicker3.css') }}">
+	<link rel="stylesheet" href="{{ asset('datepicker/css/bootstrap-datepicker3-standalone.css') }}">
+	<script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
+	<script src="{{ asset('datepicker/locales/bootstrap-datepicker.es.min.js') }}"></script>
+
 </head>
 <body>
 
@@ -26,7 +35,7 @@
 		<h4 class="subtitulo">Facultad de Ingeniería Electromecánica</h4>
 	</header>
 	
-
+@include('admin.modulos.navbar')
 	<div class="container">
 		@yield('contenido')
 	</div>
@@ -39,5 +48,9 @@
 			<p>SIGESPI 2017 | Developed by Naty and Chuys :v <span class="glyphicon glyphicon-heart-empty"></span></p>
 		</div>
 	</footer>
+
+<script src="/sweetalert/sweetalert.min.js"></script>
+@include('sweet::alert')
+
 </body>
 </html>

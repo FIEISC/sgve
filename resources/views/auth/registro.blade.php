@@ -7,9 +7,9 @@
 
 <div class="col-md-6 col-md-offset-3">
 
-<h1>Registro</h1>
+<h1 class="text-center">Registro</h1>
 
-<form action="" method="POST">
+<form action="{{ route('datosRegistro') }}" method="POST">
 
 {!! csrf_field() !!}
   
@@ -17,7 +17,7 @@
     {{-- <label for="no_cuenta">Número de cuenta</label> --}}
     <div class="input-group">
       <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> Nombre completo</div>
-      <input type="text" class="form-control" id="no_cuenta" placeholder="">
+      <input type="text" class="form-control" name="nom_docente" id="no_cuenta" placeholder="">
     </div>
   </div>
 
@@ -25,7 +25,7 @@
     {{-- <label for="no_cuenta">Número de cuenta</label> --}}
     <div class="input-group">
       <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> No. Cuenta</div>
-      <input type="text" class="form-control" id="no_cuenta" placeholder="">
+      <input type="text" class="form-control" name="nom_cuenta" id="no_cuenta" placeholder="">
     </div>
   </div>
 
@@ -33,7 +33,7 @@
     {{-- <label for="no_cuenta">Número de cuenta</label> --}}
     <div class="input-group">
       <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> Correo</div>
-      <input type="text" class="form-control" id="no_cuenta" placeholder="">
+      <input type="text" class="form-control" name="email" id="no_cuenta" placeholder="">
     </div>
   </div>
 
@@ -41,9 +41,36 @@
     {{-- <label for="no_cuenta">Número de cuenta</label> --}}
     <div class="input-group">
       <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> Contraseña</div>
-      <input type="text" class="form-control" id="no_cuenta" placeholder="">
+      <input type="password" class="form-control" name="password" id="no_cuenta" placeholder="">
     </div>
   </div>
+
+  <div class="form-group">
+    <div class="radio">
+      <label>
+        <input type="radio" name="rol" id="" value="1">
+        Director
+      </label>
+    </div>
+
+<div class="radio">
+  <label>
+    <input type="radio" name="rol" id="" value="2">
+    Coordinador de área
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <input type="radio" name="rol" id="" value="3">
+    Docente
+  </label>
+</div>
+  </div>
+
+  <input type="hidden" name="plantel_id" value="{{ $plantel->id }}">
+
+  <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
 
 </form>
 

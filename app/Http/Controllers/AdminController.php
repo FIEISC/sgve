@@ -10,6 +10,8 @@ use Alert;
 
 use sgve\User;
 
+use DB;
+
 class AdminController extends Controller
 {
 
@@ -31,10 +33,10 @@ class AdminController extends Controller
 /*Datos para validar el login del admistrador*/
     public function datosLoginAdmin(Request $request)
     {
-    	$nom_cuenta = $request->input('nom_cuenta');
+    	$no_cuenta = $request->input('no_cuenta');
     	$password = $request->input('password');
 
-    	if (!Auth::attempt(['nom_cuenta' => $nom_cuenta, 'password' => $password, 'rol' => 0, 'activo' => 1])) 
+    	if (!Auth::attempt(['no_cuenta' => $no_cuenta, 'password' => $password, 'rol' => 0, 'activo' => 1])) 
     	{
     		Alert::warning('Verifica tus datos', 'Datos incorrectos');
     		return redirect()->back();
@@ -58,6 +60,17 @@ class AdminController extends Controller
     	$docentes = User::where('activo', '=', 0)->where('rol', '!=', 0)->get();
 
     	return view('admin.paginas.validarUsuarios', compact('docentes'));
+    }
+
+    public function datoActivarUsuario(Request $request, $id)
+    {   
+        $activo = $request->input('activo');
+
+        DB::table('users')->where('id', $id)->update(['activo' => $activo]);
+
+        Alert::success('Usuario activado en el sistema', 'Usuario activado');
+
+        return redirect()->back();
     }
 
 }

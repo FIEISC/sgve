@@ -10,10 +10,16 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'nom_docente', 'nom_cuenta', 'email', 'password', 'rol', 'plantel_id'
+        'nom_docente', 'no_cuenta', 'email', 'password', 'rol', 'plantel_id'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+/*Relacion 1:N con planteles*/
+    public function plantel()
+    {
+    	return $this->belongsTo(Plantel::class);
+    }
 }

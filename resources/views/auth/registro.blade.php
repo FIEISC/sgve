@@ -25,7 +25,7 @@
     {{-- <label for="no_cuenta">Número de cuenta</label> --}}
     <div class="input-group">
       <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> No. Cuenta</div>
-      <input type="text" class="form-control" name="nom_cuenta" id="no_cuenta" placeholder="">
+      <input type="text" class="form-control" name="no_cuenta" id="no_cuenta" placeholder="">
     </div>
   </div>
 

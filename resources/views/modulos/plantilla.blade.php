@@ -10,13 +10,13 @@
 	<link rel="icon" href="http://siceuc.ucol.mx/pp/" type="image/x-icon">
 	<link rel="shortcut icon" href="http://siceuc.ucol.mx/pp/application/assets/images/logos/logocircular.ico" type="image/x-icon">
     
+	<link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantilla/css/my-style.css') }}">
     <link rel="stylesheet" href="{{ asset('plantilla/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/estilos/jquery.noty.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/bootstrap.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/nobootstrap.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/base.css') }}" media="screen">
-	<link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
 
 	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
 

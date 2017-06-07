@@ -12,7 +12,7 @@
 		<div class="form-group">
 			<div class="input-group">
 				<div class="input-group-addon">Número de cuenta</div>
-				<input type="text" class="form-control" name="nom_cuenta" id="no_cuenta" placeholder="">
+				<input type="text" class="form-control" name="no_cuenta" id="no_cuenta" placeholder="">
 			</div>
 		</div>
 

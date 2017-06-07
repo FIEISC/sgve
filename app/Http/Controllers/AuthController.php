@@ -12,18 +12,21 @@ use sgve\User;
 
 use Alert;
 
+use Auth;
+
 class AuthController extends Controller
 {
-    /*Redirecciona al login principal*/
-    public function login()
-    {
-    	return view('auth.login');
-    }
 
 /*Redirecciona al modulo para elegir un campus*/
     public function elegirCampus()
     {
     	$campus = Campus::all();
+
+        if (count($campus) === 0) 
+        {
+             Alert::info('Registrar al menos un campus', 'Campus no encontrados');
+             return redirect()->back();
+        }
 
     	return view('auth.elegirCampus', compact('campus'));
     }
@@ -42,6 +45,12 @@ todos los planteles que pertenecen al campus elegido*/
         }
     
         $planteles = Plantel::where('campus_id', '=', $campus_id)->get();
+
+        if (count($planteles) === 0) 
+        {
+            Alert::info('Registrar al menos un plantel para el campus elegido', 'Planteles no encontrados');
+            return redirect()->back();
+        }
 
         return view('auth.elegirPlantel', compact('planteles'));
     }
@@ -65,11 +74,42 @@ todos los planteles que pertenecen al campus elegido*/
 
     public function datosRegistro(Request $request)
     {
-        User::create($request->all());
+       // User::create($request->all());
+
+        User::create([
+            
+            'nom_docente' => $request->input('nom_docente'),
+            'no_cuenta' => $request->input('no_cuenta'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'rol' => $request->input('rol'),
+            'plantel_id' => $request->input('plantel_id')
+            ]);
 
         Alert::success('En espera de ser activo por el coordinador de área', 'Registro exitoso');
 
         return redirect()->route('login');
+    }
+
+    /*Redirecciona al login principal*/
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    /*Recibe los datos del formulario del login */
+
+    public function datosLogin(Request $request)
+    {
+        $no_cuenta = $request->input('no_cuenta');
+        $password = $request->input('password');
+
+        if (!Auth::attempt(['no_cuenta' => $no_cuenta, 'password' => $password, 'activo' => 1])) 
+        {
+            return "Datos incorrectos o cuenta no activada";
+        }
+
+        return "Datos correctos";
     }
 
   /*  public function registro()

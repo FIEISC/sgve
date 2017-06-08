@@ -64,3 +64,5 @@ Route::get('/salir', 'AuthController@salir')->name('salir');
 /*Rutas del Coordinador*/
 
 Route::get('/coordinador/validar_usuarios', 'CoordinadorController@validarUsuarios')->name('validarUsuarios');
+
+Route::put('/coordinador/validar_usuarios/{id}', 'CoordinadorController@datoValidarUsuario')->name('datoValidarUsuario');

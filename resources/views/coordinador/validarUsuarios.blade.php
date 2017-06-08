@@ -32,6 +32,17 @@
 					@elseif($docente->rol == 3)
 					<td>Docente</td>
 					@endif
+
+					<td>
+						<form action="{{ route('datoValidarUsuario', $docente->id) }}" method="POST">
+							{!! csrf_field() !!}
+							{!! method_field('PUT') !!}
+
+							<input type="hidden" name="activo" value="1">
+
+							<button type="submit" class="btn btn-primary btn-xs">Activar  <span class="glyphicon glyphicon-ok"></span></button>
+						</form>
+					</td>
 				</tr>
 			@endforeach
 		</tbody>

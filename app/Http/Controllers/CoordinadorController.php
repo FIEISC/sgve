@@ -8,6 +8,10 @@ use Auth;
 
 use sgve\User;
 
+use Alert;
+
+use DB;
+
 class CoordinadorController extends Controller
 {
     function __construct()
@@ -21,5 +25,16 @@ class CoordinadorController extends Controller
 		$docentes = User::where('activo', '=', 0)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
 
 		return view('coordinador.validarUsuarios', compact('docentes'));
+	}
+
+	public function datoValidarUsuario(Request $request, $id)
+	{
+		$activo = $request->input('activo');
+
+		DB::table('users')->where('id', $id)->update(['activo' => $activo]);
+
+		Alert::success('El usuario ha sido activado en el sisyema', 'Usuario activado');
+
+		return redirect()->back();
 	}
 }

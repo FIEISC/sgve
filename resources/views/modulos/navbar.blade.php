@@ -23,7 +23,7 @@
          <li><a href="{{ route('validarUsuarios') }}">Válidar Usuarios</a></li>
 
          @elseif(Auth::user()->hasRoles(['3']))
-         <li><a href="">Crear Viaje</a></li>
+         <li><a href="{{ route('elegirCiclo') }}">Crear Viaje</a></li>
          @endif
         <li><a href="#">Link</a></li>
         

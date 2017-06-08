@@ -6,6 +6,6 @@
 
 <h2>Ups! Página no encontrada :c</h2>
 
-<p>Volver a la página <a href="{{ route('login') }}">principal</a></p>
+<p>Volver a la página <a href="{{ route('home') }}">principal</a></p>
 
 @endsection

@@ -16,7 +16,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="{{ route('validarUsuarios') }}">Válidar usuarios</a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="{{ route('crearCiclos') }}">Crear Ciclos</a></li>
+        <li><a href="{{ route('elegirCampusAdmin') }}">Crear Carreras</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ route('salirAdmin') }}">Salir</a></li>

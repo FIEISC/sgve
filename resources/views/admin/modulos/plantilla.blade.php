@@ -10,13 +10,13 @@
 	<link rel="icon" href="http://siceuc.ucol.mx/pp/" type="image/x-icon">
 	<link rel="shortcut icon" href="http://siceuc.ucol.mx/pp/application/assets/images/logos/logocircular.ico" type="image/x-icon">
     
+    <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantilla/css/my-style.css') }}">
     <link rel="stylesheet" href="{{ asset('plantilla/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/estilos/jquery.noty.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/bootstrap.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/nobootstrap.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/base.css') }}" media="screen">
-	<link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
 
 	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
 
@@ -49,8 +49,21 @@
 		</div>
 	</footer>
 
+<script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
 <script src="/sweetalert/sweetalert.min.js"></script>
 @include('sweet::alert')
+
+<script type="text/javascript">
+$('.datepicker').datepicker({
+    format: "yyyy-mm-dd",
+    language: "es",
+    autoclose: true
+});
+
+</script>
 
 </body>
 </html>

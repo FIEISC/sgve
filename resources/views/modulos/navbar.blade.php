@@ -15,13 +15,22 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     @if (Auth::check())
        <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+
+         @if (Auth::user()->hasRoles(['1']))
+         <li><a href="">Ver viajes</a></li>
+
+         @elseif (Auth::user()->hasRoles(['2']))
+         <li><a href="{{ route('validarUsuarios') }}">Válidar Usuarios</a></li>
+
+         @elseif(Auth::user()->hasRoles(['3']))
+         <li><a href="">Crear Viaje</a></li>
+         @endif
         <li><a href="#">Link</a></li>
         
       </ul>
 
        <ul class="nav navbar-nav navbar-right">
-        <li><a href="">Salir</a></li>
+        <li><a href="{{ route('salir') }}">Salir</a></li>
       </ul>
     @endif
       

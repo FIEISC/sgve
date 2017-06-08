@@ -17,6 +17,11 @@ use Auth;
 class AuthController extends Controller
 {
 
+    function __construct()
+    {
+        return $this->middleware('auth', ['only' => ['home', 'salir']]);
+    }
+
 /*Redirecciona al modulo para elegir un campus*/
     public function elegirCampus()
     {
@@ -106,14 +111,24 @@ todos los planteles que pertenecen al campus elegido*/
 
         if (!Auth::attempt(['no_cuenta' => $no_cuenta, 'password' => $password, 'activo' => 1])) 
         {
-            return "Datos incorrectos o cuenta no activada";
+            Alert::warning('Datos incorrectos o cuenta no activa en ese caso ponerse en contacto con el coordinador de área', 'Entrada rechazada');
+            return redirect()->back();
         }
 
-        return "Datos correctos";
+        return redirect()->route('home');
     }
 
-  /*  public function registro()
+    public function home()
     {
-    	return view('auth.registro');
-    }*/
+        return view('home');
+    }
+
+    public function salir()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
+    }
+
+
 }

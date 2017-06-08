@@ -44,9 +44,6 @@ Route::put('/admin/activar/usuario/{id}', 'AdminController@datoActivarUsuario')-
 
 
 /*Rutas del sistema*/
-Route::get('/', 'AuthController@login')->name('login');
-
-Route::post('/login/datos', 'AuthController@datosLogin')->name('datosLogin');
 
 Route::get('/campus', 'AuthController@elegirCampus')->name('elegirCampus');
 
@@ -56,4 +53,14 @@ Route::post('/registro', 'AuthController@datoPlantel')->name('datoPlantel');
 
 Route::post('/registro/datos', 'AuthController@datosRegistro')->name('datosRegistro');
 
-/*Route::get('/registro', 'AuthController@registro')->name('registro');*/
+Route::get('/', 'AuthController@login')->name('login');
+
+Route::post('/login/datos', 'AuthController@datosLogin')->name('datosLogin');
+
+Route::get('/home', 'AuthController@home')->name('home');
+
+Route::get('/salir', 'AuthController@salir')->name('salir');
+
+/*Rutas del Coordinador*/
+
+Route::get('/coordinador/validar_usuarios', 'CoordinadorController@validarUsuarios')->name('validarUsuarios');

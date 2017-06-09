@@ -15,7 +15,7 @@ class CreateViajesTable extends Migration
             $table->text('impacto');
             $table->date('fec_ini');
             $table->date('fec_fin');
-            $table->string('semestre');
+            /*$table->string('semestre');*/
             $table->boolean('aceptado')->default(0);
             $table->boolean('activo')->default(1);
             $table->string('compa');
@@ -29,6 +29,9 @@ class CreateViajesTable extends Migration
 
             $table->integer('ciclo_id')->unsigned();
             $table->foreign('ciclo_id')->references('id')->on('ciclos')->onDelete('cascade');
+
+            $table->integer('plantel_id')->unsigned();
+            $table->foreign('plantel_id')->references('id')->on('planteles')->onDelete('cascade');
 
             $table->timestamps();
         });

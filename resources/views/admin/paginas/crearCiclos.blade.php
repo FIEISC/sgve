@@ -7,7 +7,7 @@
 <div class="col-md-6 col-md-offset-3">
 	<h1 class="text-center">Crear ciclo escolar</h1>
 
-	<form action="" method="POST">
+	<form action="{{ route('datosCrearCiclo') }}" method="POST">
 		{!! csrf_field() !!}
 
 		<div class="form-group">
@@ -24,15 +24,28 @@
 		</div>
 
 		<div class="form-group">
-			<label for="date">Fecha</label>
+			<label for="fec_ini">Fecha de inicio</label>
 			<div class="input-group">
-				<input type="text" class="form-control datepicker" name="date">
+				<input type="text" class="form-control datepicker" name="fec_ini">
 				<div class="input-group-addon">
 					<span class="glyphicon glyphicon-th"></span>
 				</div>
 			</div>
 		</div>
 
+		<div class="form-group">
+			<label for="fec_fin">Fecha final</label>
+			<div class="input-group">
+				<input type="text" class="form-control datepicker" name="fec_fin">
+				<div class="input-group-addon">
+					<span class="glyphicon glyphicon-th"></span>
+				</div>
+			</div>
+		</div>
+        
+        <input type="hidden" name="activo" value="1">
+
+        <button type="submit" class="btn btn-primary btn-block">Crear</button>
 
 	</form>
 </div>

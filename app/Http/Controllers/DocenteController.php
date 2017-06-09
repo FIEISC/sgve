@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 
 use sgve\Ciclo;
 
+use sgve\Plantel;
+
+use sgve\Carrera;
+
+use sgve\User;
+
 use Alert;
+
+use Auth;
 
 class DocenteController extends Controller
 {
@@ -33,7 +41,15 @@ class DocenteController extends Controller
     public function crearViaje($id)
     {
     	$ciclo = Ciclo::findOrFail($id);
+    	$plantel = Plantel::where('id', '=', Auth::user()->plantel_id)->first();
+    	$carreras = Carrera::where('plantel_id', '=', Auth::user()->plantel_id)->get();
+    	$docentes = User::where('id', '!=', Auth::user()->id)->where('rol', '!=', 0)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
     	
-    	return view('docente.crearViaje', compact('ciclo'));
+    	return view('docente.crearViaje', compact('ciclo', 'plantel', 'carreras', 'docentes'));
+    }
+
+    public function datosCrearViaje(Request $request)
+    {
+    	dd($request->all());
     }
 }

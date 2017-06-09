@@ -38,11 +38,13 @@ Route::get('/admin/salir', 'AdminController@salirAdmin')->name('salirAdmin');
 
 /*Paginas del administrador */
 
-Route::get('/admin/validar', 'AdminController@validarUsuarios')->name('validarUsuarios');
+Route::get('/admin/validar', 'AdminController@validarUsuarios')->name('validarUsuariosAdmin');
 
 Route::put('/admin/activar/usuario/{id}', 'AdminController@datoActivarUsuario')->name('datoActivarUsuario');
 
 Route::get('/admin/crear_ciclos', 'AdminController@crearCiclos')->name('crearCiclos');
+
+Route::post('/admin/crear_ciclos', 'AdminController@datosCrearCiclo')->name('datosCrearCiclo');
 
 Route::get('/admin/elegir_campus', 'AdminController@elegirCampusAdmin')->name('elegirCampusAdmin');
 
@@ -83,3 +85,5 @@ Route::put('/coordinador/validar_usuarios/{id}', 'CoordinadorController@datoVali
 Route::get('/docente/elegir_ciclo', 'DocenteController@elegirCiclo')->name('elegirCiclo');
 
 Route::get('/docente/crear_viaje/{id}', 'DocenteController@crearViaje')->name('crearViaje');
+
+Route::post('/docente/crear_viaje', 'DocenteController@datosCrearViaje')->name('datosCrearViaje');

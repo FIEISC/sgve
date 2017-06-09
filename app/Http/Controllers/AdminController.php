@@ -16,6 +16,8 @@ use sgve\Plantel;
 
 use sgve\Carrera;
 
+use sgve\Ciclo;
+
 use DB;
 
 class AdminController extends Controller
@@ -84,6 +86,25 @@ class AdminController extends Controller
     public function crearCiclos()
     {
         return view('admin.paginas.crearCiclos');
+    }
+
+    public function datosCrearCiclo(Request $request)
+    {
+        $nom_ciclo = strtoupper($request->input('nom_ciclo'));
+        $ciclo = $request->input('ciclo');
+        $fec_ini = $request->input('fec_ini');
+        $fec_fin = $request->input('fec_fin');
+        $activo = $request->input('activo');
+
+        DB::table('ciclos')->insert([
+            'nom_ciclo' => $nom_ciclo,
+            'ciclo' => $ciclo,
+            'fec_ini' => $fec_ini,
+            'fec_fin' => $fec_fin,
+            'activo' => $activo,]);
+
+        Alert::success('Ciclo registrado en la bd', 'Ciclo creado exitosamente');
+        return redirect()->back();
     }
 
 

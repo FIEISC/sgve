@@ -18,14 +18,19 @@
     <link rel="stylesheet" href="{{ asset('/estilos/nobootstrap.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/base.css') }}" media="screen">
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- Jquery -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
 	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
 
-	{{--   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> --}}
-	<link rel="stylesheet" href="{{ asset('datepicker/css/bootstrap-datepicker3.css') }}">
-	<link rel="stylesheet" href="{{ asset('datepicker/css/bootstrap-datepicker3-standalone.css') }}">
-	<script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
-	<script src="{{ asset('datepicker/locales/bootstrap-datepicker.es.min.js') }}"></script>
-
+	{{-- DatePicker --}}
+    <link rel="stylesheet" href="{{ asset('datePicker/css/bootstrap-datepicker3.css') }}">
+    <link rel="stylesheet" href="{{ asset('datePicker/css/bootstrap-datepicker3.standalone.css') }}">
+    <script src="{{ asset('datePicker/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('datePicker/locales/bootstrap-datepicker.es.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
 </head>
 <body>
 
@@ -49,21 +54,21 @@
 		</div>
 	</footer>
 
-<script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
+{{-- <script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> --}}
+
+<script>
+    $('.datepicker').datepicker({
+        format: "yyyy/mm/dd",
+        language: "es",
+        autoclose: true
+    });
+</script>
 
 <script src="/sweetalert/sweetalert.min.js"></script>
 @include('sweet::alert')
 
-<script type="text/javascript">
-$('.datepicker').datepicker({
-    format: "yyyy-mm-dd",
-    language: "es",
-    autoclose: true
-});
-
-</script>
 
 </body>
 </html>

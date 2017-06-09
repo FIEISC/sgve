@@ -79,7 +79,14 @@ todos los planteles que pertenecen al campus elegido*/
 
     public function datosRegistro(Request $request)
     {
-       // User::create($request->all());
+       $this->validate($request, [
+        'nom_docente' => 'required',
+        'no_cuenta' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'rol' => 'required',
+        /*'plantel_id' => 'required',*/
+        ]);
 
         User::create([
             

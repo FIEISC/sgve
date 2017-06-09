@@ -79,7 +79,7 @@
         	<select name="compa" id="compa" class="form-control">
         		<option value="">Elegir docente acompañante</option>
         		@foreach ($docentes as $docente)
-        			<option value="{{ $docente->id }}">{{ $docente->nom_docente }}</option>
+        			<option value="{{ $docente->nom_docente }}">{{ $docente->nom_docente }}</option>
         		@endforeach
         	</select>
         </div>

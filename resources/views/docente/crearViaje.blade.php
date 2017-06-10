@@ -78,6 +78,7 @@
         	<label for="compa">Compañero docente</label>
         	<select name="compa" id="compa" class="form-control">
         		<option value="">Elegir docente acompañante</option>
+        		<option value="Ninguno">Ninguno</option>
         		@foreach ($docentes as $docente)
         			<option value="{{ $docente->nom_docente }}">{{ $docente->nom_docente }}</option>
         		@endforeach

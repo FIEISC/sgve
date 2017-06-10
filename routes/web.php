@@ -87,3 +87,30 @@ Route::get('/docente/elegir_ciclo', 'DocenteController@elegirCiclo')->name('eleg
 Route::get('/docente/crear_viaje/{id}', 'DocenteController@crearViaje')->name('crearViaje');
 
 Route::post('/docente/crear_viaje', 'DocenteController@datosCrearViaje')->name('datosCrearViaje');
+
+Route::get('docente/lista_viajes', 'DocenteController@listaViajes')->name('listaViajes');
+
+Route::get('/docente/viaje/{id}', 'DocenteController@verViaje')->name('verViaje');
+
+Route::get('/docente/viaje/edit/{id}', 'DocenteController@editarViaje')->name('editarViaje');
+
+Route::put('/docente/viaje/data/{id}', 'DocenteController@datosEditarViaje')->name('datosEditarViaje');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

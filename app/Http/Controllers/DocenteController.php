@@ -20,6 +20,8 @@ use Alert;
 
 use Auth;
 
+use DB;
+
 class DocenteController extends Controller
 {
 
@@ -83,5 +85,71 @@ class DocenteController extends Controller
     	Alert::success('Viaje creado exitosamente', 'Viaje creado');
 
     	return redirect()->route('elegirCiclo');
+    }
+
+/*Muestra la lista de viajes que creo el usuario actualmente autentificado en el sistema, se pasa el id del ciclo que esta actualmente activo y tiene el id en el viaje*/
+
+    public function listaViajes()
+    { 
+    	$ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+    	$viajes = Viaje::where('user_id', '=', Auth::user()->id)->where('activo', '=', 1)->where('ciclo_id', '=', $ciclo_actual->id)->get();
+
+        return view('docente.listaViajes', compact('viajes'));
+    }
+
+/*Pasa el id del viaje elegido para ver*/
+    public function verViaje($id)
+    {
+    	$viaje = Viaje::findOrFail($id);
+    	return view('docente.verViaje', compact('viaje'));
+    }
+
+/*Pasa el id del viaje elegido para editarlo*/
+    public function editarViaje($id)
+    {
+    	$viaje = Viaje::findOrFail($id);
+        $docentes = User::where('id', '!=', Auth::user()->id)->where('rol', '!=', 0)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
+    	
+    	return view('docente.editarViaje', compact('viaje', 'docentes'));
+    }
+
+    public function datosEditarViaje(Request $request, $id)
+    {
+
+        $nom_viaje = $request->input('nom_viaje');
+    	$motivos = $request->input('motivos');
+    	$impacto = $request->input('impacto');
+    	$fec_ini = $request->input('fec_ini');
+    	$fec_fin = $request->input('fec_fin');
+    	$compa = $request->input('compa');
+
+    /*    if ($compa === null) 
+        {
+            Alert::warning('Eligue ')
+        }*/
+
+    	DB::table('viajes')->where('id', $id)->update([
+            
+            'nom_viaje' => $nom_viaje,
+            'motivos' => $motivos,
+            'impacto' => $impacto,
+            'fec_ini' => $fec_ini,
+            'fec_fin' => $fec_fin,
+            'compa' => $compa,
+    		]);
+        
+   /*     Ciclo::where('id', '=', $id)->update([
+
+            'nom_viaje' => $nom_viaje,
+            'motivos' => $motivos,
+            'impacto' => $impacto,
+            'fec_ini' => $fec_ini,
+            'fec_fin' => $fec_fin,
+            'compa' => $compa
+        	]);*/
+
+        Alert::success('Viaje modificado en la base de datos', 'Viaje modificado');
+
+        return redirect()->route('listaViajes');
     }
 }

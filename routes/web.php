@@ -102,9 +102,17 @@ Route::get('/docente/viaje/asignado/{id}', 'DocenteController@verViajeAsignado')
 
 Route::get('/docente/crear_empresas', 'DocenteController@crearEmpresas')->name('crearEmpresas');
 
+Route::post('/docente/crear_empresa', 'DocenteController@datosCrearEmpresa')->name('datosCrearEmpresa');
 
+Route::get('/docente/asignar_empresas', 'DocenteController@asignarEmpresasViaje')->name('asignarEmpresasViaje');
 
+Route::get('/docente/asignar_empresas/{id}', 'DocenteController@asignarEmpresasViajeForm')->name('asignarEmpresasViajeForm');
 
+Route::post('/docente/asignar_empresas/datos/{id}', 'DocenteController@datosAsignarEmpresasViaje')->name('datosAsignarEmpresasViaje');
+
+Route::get('/docente/editar_empresas/{id}', 'DocenteController@editarEmpresasViajeForm')->name('editarEmpresasViajeForm');
+
+Route::put('/docente/editar_empresas/datos/{id}', 'DocenteController@datosEditarEmpresasViaje')->name('datosEditarEmpresasViaje');
 
 
 

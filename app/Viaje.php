@@ -22,6 +22,18 @@ class Viaje extends Model
         return $this->belongsTo(Carrera::class);
     }
 
+    public function manyEmpresas()
+    {
+        return $this->belongsToMany(Empresa::class);
+    }
+
+    public function getEmpresasAttribute()
+    {
+        return $this->manyEmpresas()->pluck('empresa_id')->toArray();
+    }
+
+    
+
   /*  public function getUsersAttribute()
     {
     	return $this->pluck('compa')->toArray();

@@ -26,10 +26,10 @@
          <li><a href="{{ route('elegirCiclo') }}">Crear Viaje</a></li>
          <li><a href="{{ route('listaViajes') }}">Lista de Viajes</a></li>
          <li><a href="{{ route('crearEmpresas') }}">Crear Empresas</a></li>
+         <li><a href="{{ route('asignarEmpresasViaje') }}">Asignar Empresas</a></li>
          <li><a href="{{ route('viajesAsignados') }}">Viajes asignados</a></li>
          @endif
-        <li><a href="#">Link</a></li>
-        
+      
       </ul>
 
        <ul class="nav navbar-nav navbar-right">

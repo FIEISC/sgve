@@ -123,10 +123,11 @@ class DocenteController extends Controller
     	$fec_fin = $request->input('fec_fin');
     	$compa = $request->input('compa');
 
-    /*    if ($compa === null) 
+        if ($compa === null) 
         {
-            Alert::warning('Eligue ')
-        }*/
+            Alert::warning('Eligue una opción de la lista', 'Elegir opción');
+            return redirect()->back();
+        }
 
     	DB::table('viajes')->where('id', $id)->update([
             
@@ -151,5 +152,25 @@ class DocenteController extends Controller
         Alert::success('Viaje modificado en la base de datos', 'Viaje modificado');
 
         return redirect()->route('listaViajes');
+    }
+
+    public function viajesAsignados()
+    {
+        $ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+        $viajes = Viaje::where('compa', '=', Auth::user()->nom_docente)->where('ciclo_id', '=', $ciclo_actual->id)->get();
+
+        return view('docente.viajesAsignados', compact('viajes'));
+    }
+
+    public function verViajeAsignado($id)
+    {
+        $viaje = Viaje::findOrFail($id);
+
+        return view('docente.verViajeAsignado', compact('viaje'));
+    }
+
+    public function crearEmpresas()
+    {
+        return view('docente.crearEmpresas');
     }
 }

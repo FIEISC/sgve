@@ -25,6 +25,8 @@
          @elseif(Auth::user()->hasRoles(['3']))
          <li><a href="{{ route('elegirCiclo') }}">Crear Viaje</a></li>
          <li><a href="{{ route('listaViajes') }}">Lista de Viajes</a></li>
+         <li><a href="{{ route('crearEmpresas') }}">Crear Empresas</a></li>
+         <li><a href="{{ route('viajesAsignados') }}">Viajes asignados</a></li>
          @endif
         <li><a href="#">Link</a></li>
         

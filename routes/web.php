@@ -96,6 +96,11 @@ Route::get('/docente/viaje/edit/{id}', 'DocenteController@editarViaje')->name('e
 
 Route::put('/docente/viaje/data/{id}', 'DocenteController@datosEditarViaje')->name('datosEditarViaje');
 
+Route::get('/docente/viajes/asignados', 'DocenteController@viajesAsignados')->name('viajesAsignados');
+
+Route::get('/docente/viaje/asignado/{id}', 'DocenteController@verViajeAsignado')->name('verViajeAsignado');
+
+Route::get('/docente/crear_empresas', 'DocenteController@crearEmpresas')->name('crearEmpresas');
 
 
 

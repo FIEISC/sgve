@@ -5,7 +5,11 @@
 @section('contenido')
 
 <div class="col-md-6 col-md-offset-3">
-	<h1>Crear empresa</h1>
+
+<div class="col-md-2 col-md-offset-10">
+	<a href="{{ route('listaEmpresas') }}" class="btn btn-primary btn-xs">Empresas</a>
+</div>
+	<h1 class="text-center">Crear empresa</h1>
 
 	<form action="{{ route('datosCrearEmpresa') }}" method="POST">
 	

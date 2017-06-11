@@ -104,6 +104,10 @@ Route::get('/docente/crear_empresas', 'DocenteController@crearEmpresas')->name('
 
 Route::post('/docente/crear_empresa', 'DocenteController@datosCrearEmpresa')->name('datosCrearEmpresa');
 
+Route::get('/docente/empresas', 'DocenteController@listaEmpresas')->name('listaEmpresas');
+
+Route::get('/docente/info_empresa/{id}', 'DocenteController@infoEmpresa')->name('infoEmpresa');
+
 Route::get('/docente/asignar_empresas', 'DocenteController@asignarEmpresasViaje')->name('asignarEmpresasViaje');
 
 Route::get('/docente/asignar_empresas/{id}', 'DocenteController@asignarEmpresasViajeForm')->name('asignarEmpresasViajeForm');

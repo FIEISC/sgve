@@ -183,6 +183,19 @@ class DocenteController extends Controller
        return redirect()->route('crearEmpresas');
     }
 
+    public function listaEmpresas()
+    {
+        $empresas = Empresa::all();
+        return view('docente.listaEmpresas', compact('empresas'));
+    }
+
+    public function infoEmpresa($id)
+    {
+        $empresa = Empresa::findOrFail($id);
+
+        return view('docente.infoEmpresa', compact('empresa'));
+    }
+
     public function asignarEmpresasViaje()
     {
         $ciclo_actual = Ciclo::where('activo', '=', 1)->first();

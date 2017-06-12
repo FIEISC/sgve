@@ -21,6 +21,7 @@
 
          @elseif (Auth::user()->hasRoles(['2']))
          <li><a href="{{ route('validarUsuarios') }}">Válidar Usuarios</a></li>
+         <li><a href="{{ route('verViajes') }}">Ver viajes</a></li>
 
          @elseif(Auth::user()->hasRoles(['3']))
          <li><a href="{{ route('elegirCiclo') }}">Crear Viaje</a></li>
@@ -33,6 +34,7 @@
       </ul>
 
        <ul class="nav navbar-nav navbar-right">
+       <li><a href="">{{ Auth::user()->nom_docente }}</a></li>
         <li><a href="{{ route('salir') }}">Salir</a></li>
       </ul>
     @endif

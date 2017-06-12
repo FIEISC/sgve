@@ -8,6 +8,10 @@ use Auth;
 
 use sgve\User;
 
+use sgve\Ciclo;
+
+use sgve\Viaje;
+
 use Alert;
 
 use DB;
@@ -37,4 +41,15 @@ class CoordinadorController extends Controller
 
 		return redirect()->back();
 	}
+
+	public function verViajes()
+	{
+		$ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+
+		$viajes = Viaje::where('plantel_id', '=', Auth::user()->plantel_id)->where('ciclo_id', '=', $ciclo_actual->id)->get();
+
+		return view('coordinador.verViajes', compact('viajes'));
+	}
+
+
 }

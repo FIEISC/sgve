@@ -45,7 +45,47 @@
     </div>
   </div>
 
-  <div class="form-group">
+@if((count($director) === 1) && (count($coordinador) === 1))
+<div class="radio">
+  <label>
+    <input type="radio" name="rol" id="" value="3">
+    Docente
+  </label>
+</div>
+
+@elseif (count($director) === 1)
+ <div class="radio">
+  <label>
+    <input type="radio" name="rol" id="" value="2">
+    Coordinador de área
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <input type="radio" name="rol" id="" value="3">
+    Docente
+  </label>
+</div>
+
+@elseif(count($coordinador) === 1)
+
+<div class="radio">
+  <label>
+    <input type="radio" name="rol" id="" value="1">
+    Director
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <input type="radio" name="rol" id="" value="3">
+    Docente
+  </label>
+</div>
+
+@else
+<div class="form-group">
     <div class="radio">
       <label>
         <input type="radio" name="rol" id="" value="1">
@@ -66,7 +106,9 @@
     Docente
   </label>
 </div>
-  </div>
+  </div> 
+@endif
+  
 
   <input type="hidden" name="plantel_id" value="{{ $plantel->id }}">
 

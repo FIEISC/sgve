@@ -27,6 +27,7 @@
 
 			<h3>Contacto (RH)</h3>
 			<p>{{ $empresa->contacto }}</p>
+
 		</div>
 	</div>
 </div>

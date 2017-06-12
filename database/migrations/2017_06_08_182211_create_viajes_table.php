@@ -16,7 +16,8 @@ class CreateViajesTable extends Migration
             $table->date('fec_ini');
             $table->date('fec_fin');
             /*$table->string('semestre');*/
-            $table->boolean('aceptado')->default(0);
+            $table->boolean('aceptadoC')->default(0);
+            $table->boolean('aceptadoD')->default(0);
             $table->boolean('activo')->default(1);
             $table->string('compa');
 

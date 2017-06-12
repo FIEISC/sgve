@@ -79,6 +79,8 @@ Route::get('/coordinador/validar_usuarios', 'CoordinadorController@validarUsuari
 
 Route::put('/coordinador/validar_usuarios/{id}', 'CoordinadorController@datoValidarUsuario')->name('datoValidarUsuario');
 
+Route::get('/coordinador/ver_viajes', 'CoordinadorController@verViajes')->name('verViajes');
+
 
 /*Rutas del docente*/
 

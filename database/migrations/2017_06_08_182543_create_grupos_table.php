@@ -22,6 +22,9 @@ class CreateGruposTable extends Migration
 
             $table->integer('carrera_id')->unsigned();
             $table->foreign('carrera_id')->references('id')->on('carreras')->onDelete('cascade');
+
+            $table->integer('plantel_id')->unsigned();
+            $table->foreign('plantel_id')->references('id')->on('planteles')->onDelete('cascade');
             
             $table->timestamps();
         });

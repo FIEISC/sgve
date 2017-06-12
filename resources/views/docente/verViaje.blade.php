@@ -25,6 +25,13 @@
 			<h3>Docente acompañante</h3>
 			<p>{{ $viaje->compa }}</p>
 
+			<h3>Empresas a visitar</h3>
+			@foreach ($viaje->manyEmpresas as $empresa)
+			<ul>
+				<li style="list-style: none;">{{ $empresa->nom_empresa }}</li>
+			</ul>
+			@endforeach
+
 		{{-- 	<h3>Creador del viaje</h3>
 			<p>{{ $viaje->user->nom_docente }}</p> --}}
 			 

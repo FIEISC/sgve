@@ -74,7 +74,20 @@ todos los planteles que pertenecen al campus elegido*/
 
         $plantel = Plantel::findOrFail($plantel_id);
 
-        return view('auth.registro', compact('plantel'));
+        $director = User::where('plantel_id', '=', $plantel_id)->where('rol', '=', 1)->first();
+
+        $coordinador = User::where('plantel_id', '=', $plantel_id)->where('rol', '=', 2)->first();
+
+      /*  if (count($director) === 1) 
+        {
+            return "Ya hay director";
+        }
+        else
+        {
+            return "No hay director";
+        }*/
+
+        return view('auth.registro', compact('plantel', 'director', 'coordinador'));
     }
 
     public function datosRegistro(Request $request)

@@ -120,7 +120,15 @@ Route::get('/docente/editar_empresas/{id}', 'DocenteController@editarEmpresasVia
 
 Route::put('/docente/editar_empresas/datos/{id}', 'DocenteController@datosEditarEmpresasViaje')->name('datosEditarEmpresasViaje');
 
+/*Rutas del alumno*/
 
+Route::get('/alumno/opciones', 'AlumnoController@elegirOpciones')->name('elegirOpciones');
+
+Route::get('/alumno/campus', 'AlumnoController@elegirCampusRegistrar')->name('elegirCampusRegistrar');
+
+Route::post('alumno/planteles', 'AlumnoController@elegirPlantelRegistrar')->name('elegirPlantelRegistrar');
+
+Route::post('alumno/registro', 'AlumnoController@registroAlumno')->name('registroAlumno');
 
 
 

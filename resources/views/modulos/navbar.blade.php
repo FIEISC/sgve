@@ -40,6 +40,9 @@
     @endif
       
     @if (Auth::guest())
+    <ul class="nav navbar-nav navbar-left">
+      <li><a href="{{ route('elegirOpciones') }}">Alumno</a></li>
+    </ul>
         <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ route('login') }}">Login</a></li>
         <li><a href="{{ route('elegirCampus') }}">Registro</a></li>

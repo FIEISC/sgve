@@ -12,7 +12,7 @@ class CreateAlumnosTable extends Migration
             $table->increments('id');
             $table->string('nom_alumno');
             $table->string('no_cuenta')->unique();
-            $table->integer('semestre');
+            /*$table->integer('semestre');*/
             $table->string('nom_padre');
             $table->string('tel_padre');
             $table->string('no_imss');

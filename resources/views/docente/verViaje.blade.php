@@ -26,11 +26,17 @@
 			<p>{{ $viaje->compa }}</p>
 
 			<h3>Empresas a visitar</h3>
+
+			@if (count($viaje->manyEmpresas) === 0)
+				<p>No tiene empresas asignadas por el momento</p>
+			@else
 			@foreach ($viaje->manyEmpresas as $empresa)
 			<ul>
 				<li style="list-style: none;">{{ $empresa->nom_empresa }}</li>
 			</ul>
 			@endforeach
+			@endif
+			
 
 		{{-- 	<h3>Creador del viaje</h3>
 			<p>{{ $viaje->user->nom_docente }}</p> --}}

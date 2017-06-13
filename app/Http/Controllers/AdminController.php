@@ -90,19 +90,28 @@ class AdminController extends Controller
 
     public function datosCrearCiclo(Request $request)
     {
-        $this->validate($request, [
+         $this->validate($request, [
+            
+            'nom_ciclo' => 'required|unique:ciclos',
+            'ciclo' => 'required|in:1,2',
+            'fec_ini' => 'required|date',
+            'fec_fin' => 'required|date',
+            'activo' => 'required|in:1',
+            ]);
+
+       /* $this->validate($request, [
             
             'nom_ciclo' => 'required|unique:ciclos',
             'ciclo' => 'required|in:1,2',
             'fec_ini' => 'required|date|after:today',
             'fec_fin' => 'required|date|after:today',
             'activo' => 'required|in:1',
-            ]);
+            ]);*/
 
-        if (!$this->validate()) 
+     /*   if (!$this->validate()) 
         {
             return "Datos incorrectos";
-        }
+        }*/
 
         $nom_ciclo = strtoupper($request->input('nom_ciclo'));
         $ciclo = $request->input('ciclo');

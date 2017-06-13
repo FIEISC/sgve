@@ -29,11 +29,13 @@ use DB;
 class DocenteController extends Controller
 {
 
+
     function __construct()
     {
         return $this->middleware(['auth', 'roles:3']);
     }
 
+/*Para crear un viaje primero de debe elegir el ciclo escolar actual, en caso no que no se halla creado uno, se mostrara un mensaje de alerta*/
     public function elegirCiclo()
     {
         $ciclo = Ciclo::where('activo', '=', 1)->first();
@@ -53,6 +55,14 @@ class DocenteController extends Controller
         $ciclo = Ciclo::findOrFail($id);
         $plantel = Plantel::where('id', '=', Auth::user()->plantel_id)->first();
         $carreras = Carrera::where('plantel_id', '=', Auth::user()->plantel_id)->get();
+
+        if (count($carreras) === 0) 
+        {
+            Alert::info('Ponerse en contacto con el administrador para registrar al menos una carrera', 'Carreras no encontradas');
+
+            return redirect()->back();
+        }
+
         $docentes = User::where('id', '!=', Auth::user()->id)->where('rol', '!=', 0)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
         
         return view('docente.crearViaje', compact('ciclo', 'plantel', 'carreras', 'docentes'));
@@ -96,6 +106,13 @@ class DocenteController extends Controller
     public function listaViajes()
     { 
         $ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+
+       if ($ciclo_actual === null) 
+       {
+           Alert::warning('Crear ciclo escolar actual', 'Ciclo escolar no encontrado');
+           return redirect()->back();
+       }
+
         $viajes = Viaje::where('user_id', '=', Auth::user()->id)->where('activo', '=', 1)->where('ciclo_id', '=', $ciclo_actual->id)->get();
 
         return view('docente.listaViajes', compact('viajes'));
@@ -151,6 +168,13 @@ class DocenteController extends Controller
     public function viajesAsignados()
     {
         $ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+
+        if ($ciclo_actual === null) 
+       {
+           Alert::warning('Crear ciclo escolar actual', 'Ciclo escolar no encontrado');
+           return redirect()->back();
+       }
+
         $viajes = Viaje::where('compa', '=', Auth::user()->nom_docente)->where('ciclo_id', '=', $ciclo_actual->id)->get();
 
         return view('docente.viajesAsignados', compact('viajes'));
@@ -186,6 +210,13 @@ class DocenteController extends Controller
     public function listaEmpresas()
     {
         $empresas = Empresa::all();
+
+        if (count($empresas) === 0) 
+        {
+           Alert::info('Registrar al menos una empresa', 'Empresas no encontradas');
+           return redirect()->back();
+        }
+
         return view('docente.listaEmpresas', compact('empresas'));
     }
 
@@ -199,6 +230,12 @@ class DocenteController extends Controller
     public function asignarEmpresasViaje()
     {
         $ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+         
+         if ($ciclo_actual === null) 
+       {
+           Alert::warning('Crear ciclo escolar actual', 'Ciclo escolar no encontrado');
+           return redirect()->back();
+       }
 
         $viajes = Viaje::where('user_id', '=', Auth::user()->id)->where('activo', '=', 1)->where('ciclo_id', '=', $ciclo_actual->id)->get();
 
@@ -209,6 +246,12 @@ class DocenteController extends Controller
     {
         $viaje = Viaje::findOrFail($id);
         $empresas = Empresa::orderBy('nom_empresa', 'ASC')->pluck('nom_empresa', 'id');
+
+        if (count($empresas) === 0) 
+        {
+            Alert::warning('No hay empresas registradas', 'Registrar empresas');
+            return redirect()->back();
+        }
 
        return view('docente.asignarEmpresasViajeForm', compact('viaje', 'empresas'));
     }
@@ -233,6 +276,12 @@ class DocenteController extends Controller
       $viaje = Viaje::findOrFail($id);
       $empresas = Empresa::orderBy('nom_empresa', 'ASC')->pluck('nom_empresa', 'id');
 
+       if (count($empresas) === 0) 
+        {
+            Alert::warning('No hay empresas registradas', 'Registrar empresas');
+            return redirect()->back();
+        }
+
       return view('docente.editarEmpresasViajeForm', compact('viaje', 'empresas'));
   }
 
@@ -252,3 +301,5 @@ class DocenteController extends Controller
   }
 
 }
+
+

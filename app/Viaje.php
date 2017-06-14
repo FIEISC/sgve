@@ -31,7 +31,12 @@ class Viaje extends Model
     {
         return $this->manyEmpresas()->pluck('empresa_id')->toArray();
     }
-
+    
+    /*Relacion 1:N con ciclos*/
+    public function ciclo()
+    {
+        return $this->belongsTo(Ciclo::class);
+    }
     
 
   /*  public function getUsersAttribute()

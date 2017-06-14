@@ -10,6 +10,8 @@ use sgve\Http\Requests\EmpresaRequest;
 
 use sgve\Ciclo;
 
+use sgve\Grupo;
+
 use sgve\Plantel;
 
 use sgve\Carrera;
@@ -70,7 +72,7 @@ class DocenteController extends Controller
 
     public function datosCrearViaje(ViajeRequest $request)
     {
-        /*dd($request->all());*/
+       /* dd($request->all());*/
 
         $nom_viaje = $request->input('nom_viaje');
         $motivos = $request->input('motivos');
@@ -98,7 +100,7 @@ class DocenteController extends Controller
 
         Alert::success('Viaje creado exitosamente', 'Viaje creado');
 
-        return redirect()->route('elegirCiclo');
+        return redirect()->route('listaViajes');
     }
 
 /*Muestra la lista de viajes que creo el usuario actualmente autentificado en el sistema, se pasa el id del ciclo que esta actualmente activo y tiene el id en el viaje*/
@@ -298,6 +300,30 @@ class DocenteController extends Controller
 
       Alert::success('Las empresas fueron asignadas al viaje', 'Empresas editadas');
       return redirect()->route('asignarEmpresasViaje'); 
+  }
+
+  public function crearGrupos()
+  {
+    $ciclo = Ciclo::where('activo', '=', 1)->first();
+    $viajes = Viaje::where('user_id', '=', Auth::user()->id)->where('activo', '=', 1)->where('ciclo_id', '=', $ciclo->id)->get();
+
+    return view('docente.crearGrupos', compact('ciclo', 'viajes'));
+  }
+
+  public function crearGrupo($id)
+  {
+    $viaje = Viaje::findOrFail($id);
+
+    return view('docente.crearGrupo', compact('viaje'));
+  }
+
+  public function datosCrearGrupo(Request $request)
+  {
+    Grupo::create($request->all());
+
+    Alert::success('El grupo fué registrado en el sistema', 'Grupo creado exitosamente');
+
+    return redirect()->route('crearGrupos');
   }
 
 }

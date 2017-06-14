@@ -9,6 +9,7 @@
 	$admin->email = 'naty_snuff@hotmail.com';
 	$admin->password = bcrypt('nath123');
 	$admin->rol = 0;
+	$admin->activo = 1;
 	$admin->plantel_id = 1;
 	$admin->save();
 });
@@ -23,6 +24,7 @@
 	$admin->email = 'jjaimes@ucol.mx';
 	$admin->password = bcrypt('chuy123');
 	$admin->rol = 0;
+	$admin->activo = 1;
 	$admin->plantel_id = 1;
 	$admin->save();
 });*/
@@ -120,6 +122,12 @@ Route::get('/docente/editar_empresas/{id}', 'DocenteController@editarEmpresasVia
 
 Route::put('/docente/editar_empresas/datos/{id}', 'DocenteController@datosEditarEmpresasViaje')->name('datosEditarEmpresasViaje');
 
+Route::get('/docente/grupos', 'DocenteController@crearGrupos')->name('crearGrupos');
+
+Route::get('/docente/grupo/viaje/{id}', 'DocenteController@crearGrupo')->name('crearGrupo');
+
+Route::post('/docente/grupo/viaje', 'DocenteController@datosCrearGrupo')->name('datosCrearGrupo');
+
 /*Rutas del alumno*/
 
 Route::get('/alumno/opciones', 'AlumnoController@elegirOpciones')->name('elegirOpciones');
@@ -129,6 +137,10 @@ Route::get('/alumno/campus', 'AlumnoController@elegirCampusRegistrar')->name('el
 Route::post('alumno/planteles', 'AlumnoController@elegirPlantelRegistrar')->name('elegirPlantelRegistrar');
 
 Route::post('alumno/registro', 'AlumnoController@registroAlumno')->name('registroAlumno');
+
+Route::post('/alumno/registro/datos', 'AlumnoController@datosRegistroAlumno')->name('datosRegistroAlumno');
+
+
 
 
 

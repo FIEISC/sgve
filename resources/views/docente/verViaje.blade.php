@@ -36,10 +36,17 @@
 			</ul>
 			@endforeach
 			@endif
-			
-
-		{{-- 	<h3>Creador del viaje</h3>
-			<p>{{ $viaje->user->nom_docente }}</p> --}}
+            
+            <h3>Grupos que viajaran</h3>
+			@if (count($viaje->grupos) === 0)
+				<p>No tiene grupos asigandos por el momento</p>
+			@else
+			@foreach ($viaje->grupos as $grupo)
+				<ul>
+					<li style="list-style: none;">{{ $grupo->nom_grupo }}</li>
+				</ul>
+			@endforeach
+			@endif
 			 
 		</div>
 	</div>

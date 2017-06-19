@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title', 'SGVE')</title>
@@ -9,6 +9,8 @@
 	
 	<link rel="icon" href="http://siceuc.ucol.mx/pp/" type="image/x-icon">
 	<link rel="shortcut icon" href="http://siceuc.ucol.mx/pp/application/assets/images/logos/logocircular.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     
 	<link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantilla/css/my-style.css') }}">
@@ -63,6 +65,12 @@
         language: "es",
         autoclose: true
     });
+</script>
+
+<script>
+	$(document).ready(function(){
+    $('#myTable').DataTable();
+});
 </script>
 
 <script src="/sweetalert/sweetalert.min.js"></script>

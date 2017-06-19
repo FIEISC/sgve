@@ -37,6 +37,11 @@ class Viaje extends Model
     {
         return $this->belongsTo(Ciclo::class);
     }
+
+    public function grupos()
+    {
+        return $this->hasMany(Grupo::class);
+    }
     
 
   /*  public function getUsersAttribute()

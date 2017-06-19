@@ -10,6 +10,7 @@
 	<thead>
 		<tr>
 			<th>Viaje</th>
+			<th>Grupos</th>
 			<th>Acción</th>
 		</tr>
 	</thead>
@@ -18,6 +19,13 @@
 		@foreach ($viajes as $viaje)
 			<tr>
 				<td>{{ $viaje->nom_viaje }}</td>
+				<td>
+					@foreach ($viaje->grupos as $grupo)
+						<ul>
+							<li style="list-style: none;"><a href="{{ route('infoGrupo', $grupo->id) }}">{{ $grupo->nom_grupo }}</a></li>
+						</ul>
+					@endforeach
+				</td>
 				<td><a href="{{ route('crearGrupo', $viaje->id) }}" class="btn btn-primary btn-xs">Crear</a></td>
 			</tr>
 		@endforeach

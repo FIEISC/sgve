@@ -72,8 +72,6 @@ class DocenteController extends Controller
 
     public function datosCrearViaje(ViajeRequest $request)
     {
-       /* dd($request->all());*/
-
         $nom_viaje = $request->input('nom_viaje');
         $motivos = $request->input('motivos');
         $impacto = $request->input('impacto');
@@ -167,6 +165,7 @@ class DocenteController extends Controller
         return redirect()->route('listaViajes');
     }
 
+/*Para ver a que viajes se fue asignado por otro docente que creo un viaje*/
     public function viajesAsignados()
     {
         $ciclo_actual = Ciclo::where('activo', '=', 1)->first();
@@ -182,6 +181,7 @@ class DocenteController extends Controller
         return view('docente.viajesAsignados', compact('viajes'));
     }
 
+    /*Para ver la informacion del viaje al cual se fue asignado como acompañante*/
     public function verViajeAsignado($id)
     {
         $viaje = Viaje::findOrFail($id);
@@ -189,11 +189,13 @@ class DocenteController extends Controller
         return view('docente.verViajeAsignado', compact('viaje'));
     }
 
+/*Vista del formulario para crear empresas*/
     public function crearEmpresas()
     {
         return view('docente.crearEmpresas');
     }
 
+/*Datos recogidos del formulario para registrarlos en la bd*/
     public function datosCrearEmpresa(EmpresaRequest $request)
     {
        $nom_empresa = $request->input('nom_empresa');
@@ -209,6 +211,7 @@ class DocenteController extends Controller
        return redirect()->route('crearEmpresas');
     }
 
+/*Vista para mostrar todas las empresas creadas*/
     public function listaEmpresas()
     {
         $empresas = Empresa::all();
@@ -221,14 +224,15 @@ class DocenteController extends Controller
 
         return view('docente.listaEmpresas', compact('empresas'));
     }
-
+/*Vista para mostrar la informacion de cada empresa*/
     public function infoEmpresa($id)
     {
         $empresa = Empresa::findOrFail($id);
 
         return view('docente.infoEmpresa', compact('empresa'));
     }
-
+/*Vista donde se muestra una tabla con los viajes creados en el ciclo actual para asi
+poder asignarles empresas que se van a visitar en ese viaje*/
     public function asignarEmpresasViaje()
     {
         $ciclo_actual = Ciclo::where('activo', '=', 1)->first();
@@ -239,11 +243,12 @@ class DocenteController extends Controller
            return redirect()->back();
        }
 
-        $viajes = Viaje::where('user_id', '=', Auth::user()->id)->where('activo', '=', 1)->where('ciclo_id', '=', $ciclo_actual->id)->get();
+      $viajes = Viaje::where('user_id', '=', Auth::user()->id)->where('activo', '=', 1)->where('ciclo_id', '=', $ciclo_actual->id)->get();
 
         return view('docente.asignarEmpresasViaje', compact('viajes'));
     }
 
+/*Vista del formulario para asignar empresas al viaje elegido*/
     public function asignarEmpresasViajeForm($id)
     {
         $viaje = Viaje::findOrFail($id);
@@ -257,7 +262,7 @@ class DocenteController extends Controller
 
        return view('docente.asignarEmpresasViajeForm', compact('viaje', 'empresas'));
     }
-
+/*Datos del formulario para asignar empresas al viaje elegido*/
     public function datosAsignarEmpresasViaje(Request $request, $id)
     {
         if ($request->input('empresas') == null) 
@@ -273,6 +278,7 @@ class DocenteController extends Controller
       return redirect()->route('asignarEmpresasViaje'); 
   }
 
+/*Vista del formulario para editar la asignacion de empresas al viaje elegido*/
   public function editarEmpresasViajeForm($id)
   {
       $viaje = Viaje::findOrFail($id);
@@ -286,7 +292,7 @@ class DocenteController extends Controller
 
       return view('docente.editarEmpresasViajeForm', compact('viaje', 'empresas'));
   }
-
+/*Datos del formulario para editar la asignacion de empresas al viaje elegido*/
   public function datosEditarEmpresasViaje(Request $request, $id)
   {
      if ($request->input('empresas') == null) 
@@ -302,6 +308,7 @@ class DocenteController extends Controller
       return redirect()->route('asignarEmpresasViaje'); 
   }
 
+/*Vista para elegir el viaje y asi poder crear grupos con referencia al viaje*/
   public function crearGrupos()
   {
     $ciclo = Ciclo::where('activo', '=', 1)->first();
@@ -310,6 +317,7 @@ class DocenteController extends Controller
     return view('docente.crearGrupos', compact('ciclo', 'viajes'));
   }
 
+/*Vista del formulario para crear un grupo*/
   public function crearGrupo($id)
   {
     $viaje = Viaje::findOrFail($id);
@@ -317,6 +325,7 @@ class DocenteController extends Controller
     return view('docente.crearGrupo', compact('viaje'));
   }
 
+/*Datos del formulario para crear un grupo*/
   public function datosCrearGrupo(Request $request)
   {
     Grupo::create($request->all());
@@ -324,6 +333,13 @@ class DocenteController extends Controller
     Alert::success('El grupo fué registrado en el sistema', 'Grupo creado exitosamente');
 
     return redirect()->route('crearGrupos');
+  }
+
+  public function infoGrupo($id)
+  {
+     $grupo = Grupo::findOrFail($id);
+
+     return view('docente.infoGrupo', compact('grupo'));
   }
 
 }

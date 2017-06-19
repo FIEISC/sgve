@@ -51,5 +51,12 @@ class CoordinadorController extends Controller
 		return view('coordinador.verViajes', compact('viajes'));
 	}
 
+	public function verViajeCoordinador($id)
+	{
+		$viaje = Viaje::findOrFail($id);
+
+		return view('coordinador.verViajeCoordinador', compact('viaje'));
+	}
+
 
 }

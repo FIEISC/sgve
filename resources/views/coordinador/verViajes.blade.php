@@ -1,6 +1,6 @@
 @extends('modulos.plantilla')
 
-@section('title', 'Válidar Usuarios | SGVE')
+@section('title', 'Viajes | SGVE')
 
 @section('contenido')
 
@@ -11,7 +11,7 @@
     	<h3 class="text-center">No hay viajes registrados en este ciclo escolar por el momento</h3>
 
     @else
-    	<table class="table table-responsive table-hover table-bordered">
+    	<table id="myTable" class="table table-responsive table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>Viaje</th>
@@ -23,7 +23,9 @@
 			@foreach ($viajes as $viaje)
 				<tr>
 					<td>{{ $viaje->nom_viaje }}</td>
-					<td>Acciones</td>
+					<td>
+						<a href="{{ route('verViajeCoordinador', $viaje->id) }}" class="btn btn-primary btn-xs">Ver</a>
+					</td>
 				</tr>
 			@endforeach
 		</tbody>

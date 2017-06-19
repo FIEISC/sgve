@@ -14,4 +14,9 @@ class Carrera extends Model
     {
     	return $this->hasMany(Viaje::class);
     }
+
+    public function grupos()
+    {
+    	return $this->hasMany(Grupo::class);
+    }
 }

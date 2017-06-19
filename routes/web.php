@@ -83,6 +83,8 @@ Route::put('/coordinador/validar_usuarios/{id}', 'CoordinadorController@datoVali
 
 Route::get('/coordinador/ver_viajes', 'CoordinadorController@verViajes')->name('verViajes');
 
+Route::get('/coordinador/viaje/{id}', 'CoordinadorController@verViajeCoordinador')->name('verViajeCoordinador');
+
 
 /*Rutas del docente*/
 
@@ -127,6 +129,8 @@ Route::get('/docente/grupos', 'DocenteController@crearGrupos')->name('crearGrupo
 Route::get('/docente/grupo/viaje/{id}', 'DocenteController@crearGrupo')->name('crearGrupo');
 
 Route::post('/docente/grupo/viaje', 'DocenteController@datosCrearGrupo')->name('datosCrearGrupo');
+
+Route::get('/docente/grupo/{id}', 'DocenteController@infoGrupo')->name('infoGrupo');
 
 /*Rutas del alumno*/
 

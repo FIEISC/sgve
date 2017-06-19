@@ -5,6 +5,13 @@
 @section('contenido')
 
 <div class="col-md-6 col-md-offset-3">
+
+ <div class="row">
+   	<div class="col-md-2 col-md-offset-10">
+   		<a href="{{ route('crearEmpresas') }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-arrow-left"></span>  Atrás</a>
+   	</div>
+   </div>
+
 	<h1 class="text-center">Lista de empresas</h1>
 
 	<table class="table table-responsive table-hover table-bordered">

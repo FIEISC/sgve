@@ -6,7 +6,13 @@
 
 <div class="col-md-6 col-md-offset-3">
 
-		<h1>Crear Grupo de viaje</h1>
+ <div class="row">
+   	<div class="col-md-2 col-md-offset-10">
+   		<a href="{{ route('crearGrupos') }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-arrow-left"></span>  Atrás</a>
+   	</div>
+   </div>
+
+		<h1 class="text-center">Crear Grupo de viaje</h1>
 
 	<form action="{{ route('datosCrearGrupo') }}" method="POST">
 		{!! csrf_field() !!}

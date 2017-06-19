@@ -5,6 +5,13 @@
 @section('contenido')
 
 <div class="col-md-6 col-md-offset-3">
+
+   <div class="row">
+   	<div class="col-md-2 col-md-offset-10">
+   		<a href="{{ route('listaViajes') }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-arrow-left"></span>  Atrás</a>
+   	</div>
+   </div>
+  <br>
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ $viaje->nom_viaje }}</h3>

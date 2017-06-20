@@ -5,7 +5,19 @@
 @section('contenido')
 
 <div class="col-md-8 col-md-offset-2">
+<h1 class="text-center">Elegir viaje para crear los grupos de viaje</h1>
 
+@if (count($viajes) === 0)
+	<h3 class="text-center">No hay viajes creados en este ciclo escolar por el momento</h3>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+@else
 <table class="table table-bordered table-hover table-responsive">
 	<thead>
 		<tr>
@@ -31,6 +43,7 @@
 		@endforeach
 	</tbody>
 </table>
+@endif
 	
 </div>
 @endsection

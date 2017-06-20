@@ -5,6 +5,7 @@
 @section('contenido')
 
 <div class="col-md-6 col-md-offset-3">
+
 	<h1>Grupos</h1>
 
 	<table class="table table-responsive table-hover table-bordered">

@@ -84,6 +84,8 @@
 		</div>
 	@endif
 
+	<p><b>Nota: Recuerda que tienes que aceptar el reglamento y las condiciones de viaje o de lo contrario no podrás participar en los viajes estudiantiles</b></p>
+
 	<button type="submit" class="btn btn-primary btn-block">Registrarse</button>
 </form>
 </div>

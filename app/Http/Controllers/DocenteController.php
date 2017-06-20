@@ -323,7 +323,6 @@ poder asignarles empresas que se van a visitar en ese viaje*/
   public function crearGrupo($id)
   {
     $viaje = Viaje::findOrFail($id);
-
     return view('docente.crearGrupo', compact('viaje'));
   }
 
@@ -331,7 +330,6 @@ poder asignarles empresas que se van a visitar en ese viaje*/
   public function datosCrearGrupo(Request $request)
   {
     Grupo::create($request->all());
-
     Alert::success('El grupo fué registrado en el sistema', 'Grupo creado exitosamente');
 
     return redirect()->route('crearGrupos');
@@ -418,12 +416,10 @@ poder asignarles empresas que se van a visitar en ese viaje*/
       return redirect()->route('asignarAlumnosGrupos'); 
   }
 
+/*Para ver la lista de alumnos que tiene el grupo elegido*/
   public function verAlumnosGrupo($id)
   {
      $grupo = Grupo::findOrFail($id);
-
-     /*$alumnos = Alumno::where('semestre', '=', $grupo->semestre)->where('plantel_id', '=', $grupo->plantel_id)->where('carrera_id', '=', $grupo->carrera_id)->get();*/
-     
      return view('docente.verAlumnosGrupo', compact('grupo'));
   }
 

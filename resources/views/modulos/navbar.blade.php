@@ -17,7 +17,7 @@
        <ul class="nav navbar-nav">
 
          @if (Auth::user()->hasRoles(['1']))
-         <li><a href="">Ver viajes</a></li>
+         <li><a href="{{ route('verViajesDirector') }}">Ver viajes</a></li>
 
          @elseif (Auth::user()->hasRoles(['2']))
          <li><a href="{{ route('validarUsuarios') }}">Válidar Usuarios</a></li>
@@ -29,7 +29,7 @@
          <li><a href="{{ route('crearEmpresas') }}">Crear Empresas</a></li>
          <li><a href="{{ route('asignarEmpresasViaje') }}">Asignar Empresas</a></li>
          <li><a href="{{ route('crearGrupos') }}">Crear Grupos</a></li>
-         <li><a href="{{ route('asignarAlumnosGrupos') }}">Asignar Alumnos a los grupos</a></li>
+         <li><a href="{{ route('asignarAlumnosGrupos') }}">Asignar Alumnos-Grupos</a></li>
          <li><a href="{{ route('viajesAsignados') }}">Viajes asignados</a></li>
          @endif
       

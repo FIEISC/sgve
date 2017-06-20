@@ -18,7 +18,7 @@
 		<tbody>
 			<tr>
 				<td>{{ $ciclo->nom_ciclo }}</td>
-				<td><a href="{{ route('crearViaje', $ciclo->id) }}" class="btn btn-success btn-xs">Crear</a></td>
+				<td><a href="{{ route('crearViaje', $ciclo->id) }}" class="btn btn-success btn-sm">Crear</a></td>
 			</tr>
 		</tbody>
 	</table>

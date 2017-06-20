@@ -75,6 +75,18 @@ Route::get('/home', 'AuthController@home')->name('home');
 
 Route::get('/salir', 'AuthController@salir')->name('salir');
 
+/*Rutas del director del plantel*/
+
+Route::get('/director/viajes', 'DirectorController@verViajes')->name('verViajesDirector');
+
+Route::get('/director/viaje/{id}', 'DirectorController@verViaje')->name('verViajeDirector');
+
+Route::put('/director/aceptar_viaje/{id}', 'DirectorController@aceptarViajeDirector')->name('aceptarViajeDirector');
+
+Route::get('/director/historial/viajes', 'DirectorController@historialViajes')->name('historialViajesDirector');
+
+Route::get('/director/historial/viaje/{id}', 'DirectorController@verViajeHistorialDirector')->name('verViajeHistorialDirector');
+
 /*Rutas del Coordinador*/
 
 Route::get('/coordinador/validar_usuarios', 'CoordinadorController@validarUsuarios')->name('validarUsuarios');
@@ -84,6 +96,12 @@ Route::put('/coordinador/validar_usuarios/{id}', 'CoordinadorController@datoVali
 Route::get('/coordinador/ver_viajes', 'CoordinadorController@verViajes')->name('verViajes');
 
 Route::get('/coordinador/viaje/{id}', 'CoordinadorController@verViajeCoordinador')->name('verViajeCoordinador');
+
+Route::get('/coordinador/historial/viajes', 'CoordinadorController@historialViajes')->name('historialViajes');
+
+Route::get('/coordinador/historial/viaje/{id}', 'CoordinadorController@infoViajeHistorial')->name('infoViajeHistorial');
+
+Route::put('/coordinador/aceptar_viaje/{id}', 'CoordinadorController@aceptarViajeCoordinador')->name('aceptarViajeCoordinador');
 
 
 /*Rutas del docente*/

@@ -22,6 +22,8 @@ use sgve\Viaje;
 
 use sgve\Empresa;
 
+use sgve\Alumno;
+
 use Alert;
 
 use Auth;
@@ -342,6 +344,87 @@ poder asignarles empresas que se van a visitar en ese viaje*/
      return view('docente.infoGrupo', compact('grupo'));
   }
 
+  public function asignarAlumnosGrupos()
+  {
+    $ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+    $viajes = Viaje::where('user_id', '=', Auth::user()->id)->where('activo', '=', 1)->where('ciclo_id', '=', $ciclo_actual->id)->get();
+
+    return view('docente.asignarAlumnosGrupos', compact('viajes'));
+  }
+
+  public function elegirViajeAsignarAlumnosGrupos($id)
+  {
+    $viaje = Viaje::findOrFail($id);
+    $grupos = Grupo::where('viaje_id', '=', $viaje->id)->get();
+
+    return view('docente.gruposAsignarAlumnos', compact('grupos'));
+  }
+
+  public function asignarAlumnosGruposForm($id)
+  {
+    $grupo = Grupo::findOrFail($id);
+    $alumnos = Alumno::where('semestre', '=', $grupo->semestre)->where('plantel_id', '=', $grupo->plantel_id)->where('carrera_id', '=', $grupo->carrera_id)->orderBy('nom_alumno', 'ASC')->pluck('nom_alumno', 'id');
+
+    if (count($alumnos) === 0) 
+    {
+      Alert::warning('No hay alumnos registrados', 'Registrar alumnos');
+      return redirect()->back();
+    }
+
+    return view('docente.asignarAlumnosGruposForm', compact('grupo', 'alumnos'));
+  }
+
+  public function datosAsignarAlumnosGrupos(Request $request, $id)
+  {
+    if ($request->input('alumnos') === null) 
+    {
+      Alert::warning('Por favor elige al menos un alumno', 'Elegir alumnos');
+      return redirect()->back();
+    }
+
+    $grupo = Grupo::findOrFail($id);
+    $grupo->manyAlumnos()->sync($request->get('alumnos', []));
+
+     Alert::success('Los alumnos fueron asignados al grupo', 'Alumnos asignados');
+      return redirect()->route('asignarAlumnosGrupos'); 
+  }
+
+  public function editarAlumnosGruposForm($id)
+  {
+    $grupo = Grupo::findOrFail($id);
+    $alumnos = Alumno::where('semestre', '=', $grupo->semestre)->where('plantel_id', '=', $grupo->plantel_id)->where('carrera_id', '=', $grupo->carrera_id)->orderBy('nom_alumno', 'ASC')->pluck('nom_alumno', 'id');
+
+    if (count($alumnos) === 0) 
+    {
+      Alert::warning('No hay alumnos registrados', 'Registrar alumnos');
+      return redirect()->back();
+    }
+
+    return view('docente.editarAlumnosGruposForm', compact('grupo', 'alumnos'));
+  }
+
+  public function datosEditarAlumnosGrupos(Request $request, $id)
+  {
+    if ($request->input('alumnos') === null) 
+    {
+      Alert::warning('Por favor elige al menos un alumno', 'Elegir alumnos');
+      return redirect()->back();
+    }
+
+    $grupo = Grupo::findOrFail($id);
+    $grupo->manyAlumnos()->sync($request->get('alumnos', []));
+
+     Alert::success('Los alumnos fueron modificados al grupo', 'Alumnos modificados');
+      return redirect()->route('asignarAlumnosGrupos'); 
+  }
+
+  public function verAlumnosGrupo($id)
+  {
+     $grupo = Grupo::findOrFail($id);
+
+     /*$alumnos = Alumno::where('semestre', '=', $grupo->semestre)->where('plantel_id', '=', $grupo->plantel_id)->where('carrera_id', '=', $grupo->carrera_id)->get();*/
+     
+     return view('docente.verAlumnosGrupo', compact('grupo'));
+  }
+
 }
-
-

@@ -132,6 +132,20 @@ Route::post('/docente/grupo/viaje', 'DocenteController@datosCrearGrupo')->name('
 
 Route::get('/docente/grupo/{id}', 'DocenteController@infoGrupo')->name('infoGrupo');
 
+Route::get('/docente/asignar_alumnos_grupos', 'DocenteController@asignarAlumnosGrupos')->name('asignarAlumnosGrupos');
+
+Route::get('/docente/viaje/asignar_alumnos_grupos/{id}', 'DocenteController@elegirViajeAsignarAlumnosGrupos')->name('elegirViajeAsignarAlumnosGrupos');
+
+Route::get('/docente/asignar_alumnos_grupos/form/{id}', 'DocenteController@asignarAlumnosGruposForm')->name('asignarAlumnosGruposForm');
+
+Route::post('/docente/datos/asignar_alumnos_grupos/{id}', 'DocenteController@datosAsignarAlumnosGrupos')->name('datosAsignarAlumnosGrupos');
+
+Route::get('/docente/editar_alumnos_grupos/form/{id}', 'DocenteController@editarAlumnosGruposForm')->name('editarAlumnosGruposForm');
+
+Route::put('/docente/editar_alumnos_grupos/datos/{id}', 'DocenteController@datosEditarAlumnosGrupos')->name('datosEditarAlumnosGrupos');
+
+Route::get('/docente/alumnos/grupo/{id}', 'DocenteController@verAlumnosGrupo')->name('verAlumnosGrupo');
+
 /*Rutas del alumno*/
 
 Route::get('/alumno/opciones', 'AlumnoController@elegirOpciones')->name('elegirOpciones');

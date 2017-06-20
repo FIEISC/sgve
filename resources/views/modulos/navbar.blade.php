@@ -29,6 +29,7 @@
          <li><a href="{{ route('crearEmpresas') }}">Crear Empresas</a></li>
          <li><a href="{{ route('asignarEmpresasViaje') }}">Asignar Empresas</a></li>
          <li><a href="{{ route('crearGrupos') }}">Crear Grupos</a></li>
+         <li><a href="{{ route('asignarAlumnosGrupos') }}">Asignar Alumnos a los grupos</a></li>
          <li><a href="{{ route('viajesAsignados') }}">Viajes asignados</a></li>
          @endif
       

@@ -19,4 +19,14 @@ class Grupo extends Model
     {
     	return $this->belongsTo(Carrera::class);
     }
+
+    public function manyAlumnos()
+    {
+        return $this->belongsToMany(Alumno::class);
+    }
+
+    public function getAlumnosAttribute()
+    {
+        return $this->manyAlumnos()->pluck('alumno_id')->toArray();
+    }
 }

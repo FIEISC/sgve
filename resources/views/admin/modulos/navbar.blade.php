@@ -16,7 +16,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="{{ route('validarUsuariosAdmin') }}">Válidar usuarios</a></li>
-        <li><a href="{{ route('crearCiclos') }}">Crear Ciclos</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ciclos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <li><a href="{{ route('crearCiclos') }}">Crear Ciclos</a></li>
+          <li><a href="{{ route('bajaCiclos') }}">Dar baja ciclo</a></li>
+          </ul>
+        </li>
         <li><a href="{{ route('elegirCampusAdmin') }}">Crear Carreras</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

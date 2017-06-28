@@ -24,12 +24,30 @@
          <li><a href="{{ route('verViajes') }}">Ver viajes</a></li>
 
          @elseif(Auth::user()->hasRoles(['3']))
-         <li><a href="{{ route('elegirCiclo') }}">Crear Viaje</a></li>
-         <li><a href="{{ route('listaViajes') }}">Lista de Viajes</a></li>
-         <li><a href="{{ route('crearEmpresas') }}">Crear Empresas</a></li>
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Viajes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ route('elegirCiclo') }}">Crear Viaje</a></li>
+            <li><a href="{{ route('listaViajes') }}">Lista de Viajes</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empresas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ route('crearEmpresas') }}">Crear Empresas</a></li>
          <li><a href="{{ route('asignarEmpresasViaje') }}">Asignar Empresas</a></li>
-         <li><a href="{{ route('crearGrupos') }}">Crear Grupos</a></li>
-         <li><a href="{{ route('asignarAlumnosGrupos') }}">Asignar Alumnos-Grupos</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grupos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ route('crearGrupos') }}">Crear Grupos</a></li>
+            <li><a href="{{ route('asignarAlumnosGrupos') }}">Asignar Alumnos-Grupos</a></li>
+          </ul>
+        </li>
+
          <li><a href="{{ route('viajesAsignados') }}">Viajes asignados</a></li>
          @endif
       
@@ -53,3 +71,4 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+

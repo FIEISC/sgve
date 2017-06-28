@@ -47,5 +47,15 @@
 		</tbody>
 	</table>
 	@endif
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 </div>
 @endsection

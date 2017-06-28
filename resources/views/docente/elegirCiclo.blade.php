@@ -22,6 +22,10 @@
 			</tr>
 		</tbody>
 	</table>
+
+	<div class="alert alert-info" role="alert"> <span class="glyphicon glyphicon-asterisk"></span>  Si el ciclo escolar no coincide con el ciclo actual, por favor ponerse en contacto con el administrador</div>
+
+	<br>
 </div>
 
 @endsection

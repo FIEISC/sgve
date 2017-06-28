@@ -130,6 +130,20 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function bajaCiclos()
+    {
+        $ciclos = Ciclo::where('activo', '=', 1)->get();
+        return view('admin.paginas.bajaCiclos', compact('ciclos'));
+    }
+
+    public function datoBajaCiclo(Request $request, $id)
+    {
+        $activo = $request->input('activo');
+        DB::table('ciclos')->where('id', $id)->update(['activo' => $activo]);
+
+        Alert::success('Ciclo escolar dado de baja exitosamente', 'Baja ciclo escolar');
+        return redirect()->route('bajaCiclos');
+    }
 
     /*Crear Carreras*/
 

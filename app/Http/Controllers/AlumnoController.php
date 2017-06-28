@@ -57,6 +57,7 @@ class AlumnoController extends Controller
 
     public function datosRegistroAlumno(Request $request)
     {
+
        /* $this->validate($request, [
             'nom_alumno' => 'required',
             'no_cuenta' => 'required',
@@ -78,12 +79,22 @@ class AlumnoController extends Controller
                 'carrera_id' => 'required',
                 ]);*/
 
+
                 if ($request->input('carrera_id') === null) 
                 {
                     Alert::warning('Elegir Carrera');
                     return redirect()->back();
                 }
 
+/*
+        if ($request->input('aceptado') == 0) 
+        {
+            Alert::warning('Para registrarse se tienen que aceptar el reglamento', 'Registro fallido');
+            return redirect()->back();
+        }
+
+        else
+        {*/
         DB::table('alumnos')->insert([
             'nom_alumno' => $request->input('nom_alumno'),
             'no_cuenta' => $request->input('no_cuenta'),
@@ -93,9 +104,16 @@ class AlumnoController extends Controller
             'plantel_id' => $request->input('plantel_id'),
             'carrera_id' => $request->input('carrera_id'),
             'semestre' => $request->input('semestre'),
+            'aceptado' => $request->input('aceptado')
             ]);
             
             Alert::success('Has sido registrado en el sistema', 'Registro exitoso');
             return redirect()->route('elegirCampusRegistrar');
     }
+
+
+/*    public function datoAceptadoRegistroAlumno(Request $request)
+    {
+        dd($request->all());
+    }*/
 }

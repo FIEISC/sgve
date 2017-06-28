@@ -12,8 +12,7 @@
 	$admin->activo = 1;
 	$admin->plantel_id = 1;
 	$admin->save();
-});
-*/
+});*/
 
 
 /*Route::get('/admin/registro', function()
@@ -56,6 +55,9 @@ Route::post('/admin/crear_carreras', 'AdminController@crearCarreras')->name('cre
 
 Route::post('/admin/crear_carreras/datos', 'AdminController@datosCrearCarreras')->name('datosCrearCarreras');
 
+Route::get('/admin/baja_ciclos', 'AdminController@bajaCiclos')->name('bajaCiclos');
+
+Route::put('/admin/baja_ciclo/{id}', 'AdminController@datoBajaCiclo')->name('datoBajaCiclo');
 
 /*Rutas del sistema*/
 

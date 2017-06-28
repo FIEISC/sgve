@@ -6,4 +6,15 @@
 
 <h1>Bienvenido administrador {{ Auth::user()->nom_docente }}</h1>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 @endsection

@@ -16,9 +16,16 @@
       @endforeach
     </select>
   </form>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
 
-{{-- <p>Click the button to display an alert box.</p>
-
-<button onclick="myFunction()">Try it</button> --}}
 @endsection

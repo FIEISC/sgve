@@ -1,6 +1,6 @@
 @extends('modulos.plantilla')
 
-@section('title', 'Viaje | SGVE')
+@section('title', 'Baja viajes | SGVE')
 
 @section('contenido')
 
@@ -34,7 +34,20 @@
 				<tr>
 					<td>{{ $viaje->nom_viaje }}</td>
 					<td>{{ $viaje->user->nom_docente }}</td>
-					<td>Accion</td>
+					<td>
+						<div style="display: inline-flex;">
+							<a style="margin-right: 10px;" href="{{ route('verViajeCompleto', $viaje->id) }}" class="btn btn-success btn-sm">Ver Viaje</a>
+
+						<form action="{{ route('darBajaViaje', $viaje->id) }}" method="POST">
+							{!! csrf_field() !!}
+							{!! method_field('PUT') !!}
+
+							<input type="hidden" name="activo" value="0">
+
+							<button type="submit" class="btn btn-danger btn-sm">Baja</button>
+						</form>
+						</div>
+					</td>
 				</tr>
 			@endforeach
 		</tbody>

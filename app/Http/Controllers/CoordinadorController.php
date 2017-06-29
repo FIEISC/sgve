@@ -88,9 +88,25 @@ class CoordinadorController extends Controller
 	public function darBajaViajes()
 	{
 		$ciclo_actual = Ciclo::where('activo', '=', 1)->first();
-		$viajes = Viaje::where('plantel_id', '=', Auth::user()->plantel_id)->where('ciclo_id', '=', $ciclo_actual->id)->where('aceptadoC', '=', 1)->where('aceptadoD', '=', 1)->where('reporte', '!=', null)->get();
+		$viajes = Viaje::where('plantel_id', '=', Auth::user()->plantel_id)->where('ciclo_id', '=', $ciclo_actual->id)->where('aceptadoC', '=', 1)->where('aceptadoD', '=', 1)->where('reporte', '!=', null)->where('activo', '=', 1)->get();
 
 		return view('coordinador.darBajaViajes', compact('viajes'));
+	}
+
+	public function verViajeCompleto($id)
+	{
+		$viaje = Viaje::findOrFail($id);
+		return view('coordinador.verViajeCompleto', compact('viaje'));
+	}
+
+	public function darBajaViaje(Request $request, $id)
+	{
+		$activo = $request->input('activo');
+		DB::table('viajes')->where('id', $id)->update(['activo' => $activo]);
+
+		Alert::success('El viaje fué dado de baja exitosamente', 'Viaje dado de baja');
+		return redirect()->back();
+
 	}
 
 

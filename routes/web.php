@@ -107,6 +107,10 @@ Route::put('/coordinador/aceptar_viaje/{id}', 'CoordinadorController@aceptarViaj
 
 Route::get('/coordinador/baja/viajes', 'CoordinadorController@darBajaViajes')->name('darBajaViajes');
 
+Route::get('/coordinador/viaje/ver/{id}', 'CoordinadorController@verViajeCompleto')->name('verViajeCompleto');
+
+Route::put('/coordinador/viaje/baja/{id}', 'CoordinadorController@darBajaViaje')->name('darBajaViaje');
+
 /*Rutas del docente*/
 
 Route::get('/docente/elegir_ciclo', 'DocenteController@elegirCiclo')->name('elegirCiclo');

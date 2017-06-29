@@ -57,7 +57,7 @@
  <div class="radio">
   <label>
     <input type="radio" name="rol" id="" value="2">
-    Coordinador de área
+    Coordinador de vinculación
   </label>
 </div>
 
@@ -96,7 +96,7 @@
 <div class="radio">
   <label>
     <input type="radio" name="rol" id="" value="2">
-    Coordinador de área
+    Coordinador de vinculación
   </label>
 </div>
 

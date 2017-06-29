@@ -85,5 +85,13 @@ class CoordinadorController extends Controller
 		return view('coordinador.infoViajeHistorial', compact('viaje'));
 	}
 
+	public function darBajaViajes()
+	{
+		$ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+		$viajes = Viaje::where('plantel_id', '=', Auth::user()->plantel_id)->where('ciclo_id', '=', $ciclo_actual->id)->where('aceptadoC', '=', 1)->where('aceptadoD', '=', 1)->where('reporte', '!=', null)->get();
+
+		return view('coordinador.darBajaViajes', compact('viajes'));
+	}
+
 
 }

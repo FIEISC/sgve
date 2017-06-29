@@ -8,7 +8,7 @@ class Viaje extends Model
 {
     protected $table = 'viajes';
 
-    protected $fillable = ['nom_viaje', 'motivos', 'impacto', 'fec_ini', 'fec_fin', 'aceptado', 'activo', 'compa', 'user_id', 'carrera_id', 'ciclo_id', 'plantel_id'];
+    protected $fillable = ['nom_viaje', 'motivos', 'impacto', 'reporte', 'imagen1', 'imagen2', 'imagen3', 'imagen4', 'imagen5', 'fec_ini', 'fec_fin', 'aceptado', 'activo', 'compa', 'user_id', 'carrera_id', 'ciclo_id', 'plantel_id'];
 
 /*Relacion 1:N con usuarios (quien crea el viaje)*/
     public function user()

@@ -21,7 +21,14 @@
 
          @elseif (Auth::user()->hasRoles(['2']))
          <li><a href="{{ route('validarUsuarios') }}">Válidar Usuarios</a></li>
-         <li><a href="{{ route('verViajes') }}">Ver viajes</a></li>
+
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Viajes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           <li><a href="{{ route('verViajes') }}">Ver viajes</a></li>
+           <li><a href="{{ route('darBajaViajes') }}">Dar de baja</a></li>
+          </ul>
+        </li>
 
          @elseif(Auth::user()->hasRoles(['3']))
          <li class="dropdown">
@@ -29,6 +36,7 @@
           <ul class="dropdown-menu">
             <li><a href="{{ route('elegirCiclo') }}">Crear Viaje</a></li>
             <li><a href="{{ route('listaViajes') }}">Lista de Viajes</a></li>
+            <li><a href="{{ route('listaReporteViaje') }}">Reporte del Viaje</a></li>
           </ul>
         </li>
 
@@ -36,7 +44,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empresas <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{ route('crearEmpresas') }}">Crear Empresas</a></li>
-         <li><a href="{{ route('asignarEmpresasViaje') }}">Asignar Empresas</a></li>
+            <li><a href="{{ route('asignarEmpresasViaje') }}">Asignar Empresas</a></li>
           </ul>
         </li>
 

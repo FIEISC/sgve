@@ -18,19 +18,9 @@
     <link rel="stylesheet" href="{{ asset('/estilos/nobootstrap.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/estilos/base.css') }}" media="screen">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- Jquery -->
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/js/jquery.min.js') }}"></script>
 
-	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
-
-	{{-- DatePicker --}}
-    <link rel="stylesheet" href="{{ asset('datePicker/css/bootstrap-datepicker3.css') }}">
-    <link rel="stylesheet" href="{{ asset('datePicker/css/bootstrap-datepicker3.standalone.css') }}">
-    <script src="{{ asset('datePicker/js/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('datePicker/locales/bootstrap-datepicker.es.min.js') }}"></script>
-	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
 </head>
 <body>
 
@@ -56,6 +46,13 @@
 
 <script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/jquery.min.js') }}"></script>
+
+{{-- DatePicker --}}
+    <link rel="stylesheet" href="{{ asset('datePicker/css/bootstrap-datepicker3.css') }}">
+    <link rel="stylesheet" href="{{ asset('datePicker/css/bootstrap-datepicker3.standalone.css') }}">
+    <script src="{{ asset('datePicker/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('datePicker/locales/bootstrap-datepicker.es.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css') }}">
 
 <script>
     $('.datepicker').datepicker({

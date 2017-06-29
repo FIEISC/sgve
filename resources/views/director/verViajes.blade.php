@@ -38,7 +38,8 @@
 				<tr>
 					<td>{{ $viaje->nom_viaje }}</td>
 					<td>
-					<a href="{{ route('verViajeDirector', $viaje->id) }}" class="btn btn-primary btn-xs">Ver</a>
+					<div style="display: inline-flex;">
+						<a style="margin-right: 20px;" href="{{ route('verViajeDirector', $viaje->id) }}" class="btn btn-primary btn-xs">Ver</a>
 
 					<form action="{{ route('aceptarViajeDirector', $viaje->id) }}" method="POST">
 						{!! csrf_field() !!}
@@ -48,6 +49,7 @@
 
 						<button type="submit" class="btn btn-success btn-xs">Aceptar</button>
 					</form>
+					</div>
 					</td>
 				</tr>
 			@endforeach

@@ -67,7 +67,7 @@ class DocenteController extends Controller
             return redirect()->back();
         }
 
-        $docentes = User::where('id', '!=', Auth::user()->id)->where('rol', '!=', 0)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
+        $docentes = User::where('id', '!=', Auth::user()->id)->where('rol', '!=', 0)->where('rol', '!=', 1)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
         
         return view('docente.crearViaje', compact('ciclo', 'plantel', 'carreras', 'docentes'));
     }
@@ -131,7 +131,7 @@ class DocenteController extends Controller
     public function editarViaje($id)
     {
         $viaje = Viaje::findOrFail($id);
-        $docentes = User::where('id', '!=', Auth::user()->id)->where('rol', '!=', 0)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
+        $docentes = User::where('id', '!=', Auth::user()->id)->where('rol', '!=', 0)->where('rol', '!=', 1)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
         
         return view('docente.editarViaje', compact('viaje', 'docentes'));
     }
@@ -181,6 +181,123 @@ class DocenteController extends Controller
         $viajes = Viaje::where('compa', '=', Auth::user()->nom_docente)->where('ciclo_id', '=', $ciclo_actual->id)->get();
 
         return view('docente.viajesAsignados', compact('viajes'));
+    }
+
+    /*Para crear reporte del viaje despues de que acabe*/
+
+    public function listaReporteViaje()
+    {
+       $ciclo_actual = Ciclo::where('activo', '=', 1)->first();
+
+       if ($ciclo_actual === null) 
+       {
+           Alert::warning('Crear ciclo escolar actual', 'Ciclo escolar no encontrado');
+           return redirect()->back();
+       }
+
+        $viajes = Viaje::where('user_id', '=', Auth::user()->id)->where('activo', '=', 1)->where('ciclo_id', '=', $ciclo_actual->id)->where('aceptadoC', '=', 1)->where('aceptadoD', '=', 1)->get();
+
+      return view('docente.listaViajesReporte', compact('viajes'));
+    }
+/*Formuñlario para crear el reporte del viaje*/
+    public function reporteViajeForm($id)
+    {
+      $viaje = Viaje::findOrFail($id);
+
+      return view('docente.reporteViajeForm', compact('viaje'));
+    }
+
+    /*Datos del formulario del reporte del viaje*/
+
+    public function datoReporteViaje(Request $request, $id)
+    {
+      
+      $this->validate($request, [
+        'imagen1' => 'required',
+        'imagen2' => 'required',
+        'imagen3' => 'required',
+        'imagen4' => 'required',
+        'imagen5' => 'required',
+        'reporte' => 'required'
+        ]);
+
+     /* dd($request->file('imagen1')->store('public'));*/
+    
+     $imagen1 = $request->file('imagen1')->store('public');
+     $imagen2 = $request->file('imagen2')->store('public');
+     $imagen3 = $request->file('imagen3')->store('public');
+     $imagen4 = $request->file('imagen4')->store('public');
+     $imagen5 = $request->file('imagen5')->store('public');
+
+      $reporte = $request->input('reporte');
+
+      DB::table('viajes')->where('id', $id)->update(['reporte' => $reporte, 'imagen1' => $imagen1, 'imagen2' => $imagen2, 'imagen3' => $imagen3, 'imagen4' => $imagen4, 'imagen5' => $imagen5]);
+
+      Alert::success('Se ha registrado el reporte del viaje', 'Reporte creado');
+      return redirect()->route('listaReporteViaje');
+
+    }
+
+    /*Para editar el reporte del viaje*/
+
+    public function editarReporteViajeForm($id)
+    {
+      $viaje = Viaje::findOrFail($id);
+
+      return view('docente.editarReporteViajeForm', compact('viaje'));
+    }
+
+    public function datoEditarReporteViaje(Request $request, $id)
+    {
+/*      $this->validate($request, [
+      'imagen1' => 'required',
+        'imagen2' => 'required',
+        'imagen3' => 'required',
+        'imagen4' => 'required',
+        'imagen5' => 'required',
+        'reporte' => 'required'
+        ]);
+*/
+/*dd($request->all());*/
+
+ if ($request->hasFile('imagen1') || $request->hasFile('imagen2') || $request->hasFile('imagen3') || $request->hasFile('imagen4') || $request->hasFile('imagen5')) 
+{
+       $imagen1 = $request->file('imagen1')->store('public');
+       $imagen2 = $request->file('imagen2')->store('public');
+       $imagen3 = $request->file('imagen3')->store('public');
+       $imagen4 = $request->file('imagen4')->store('public');
+       $imagen5 = $request->file('imagen5')->store('public');
+
+        $reporte = $request->input('reporte');
+
+      DB::table('viajes')->where('id', $id)->update(['reporte' => $reporte, 'imagen1' => $imagen1, 'imagen2' => $imagen2, 'imagen3' => $imagen3, 'imagen4' => $imagen4, 'imagen5' => $imagen5]);
+
+      Alert::success('Se ha editado el reporte del viaje', 'Reporte editado');
+      return redirect()->route('listaReporteViaje');
+     }
+
+  else
+{
+
+      $reporte = $request->input('reporte');
+      DB::table('viajes')->where('id', $id)->update(['reporte' => $reporte]);
+
+      Alert::success('Se ha editado el reporte del viaje', 'Reporte editado');
+      return redirect()->route('listaReporteViaje');
+}
+
+}
+
+    public function verReporteViaje($id)
+    {
+       $viaje = Viaje::findOrFail($id);
+
+       if ($viaje->reporte === null) 
+       {
+         Alert::info('No se ha creado el reporte del viaje', 'Reporte no creado');
+         return redirect()->back();
+       }
+       return view('docente.verReporteViaje', compact('viaje'));
     }
 
     /*Para ver la informacion del viaje al cual se fue asignado como acompañante*/

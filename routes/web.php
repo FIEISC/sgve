@@ -26,8 +26,8 @@
 	$admin->activo = 1;
 	$admin->plantel_id = 1;
 	$admin->save();
-});*/
-
+});
+*/
 
 Route::get('/admin/home', 'AdminController@homeAdmin')->name('homeAdmin');
 
@@ -105,6 +105,7 @@ Route::get('/coordinador/historial/viaje/{id}', 'CoordinadorController@infoViaje
 
 Route::put('/coordinador/aceptar_viaje/{id}', 'CoordinadorController@aceptarViajeCoordinador')->name('aceptarViajeCoordinador');
 
+Route::get('/coordinador/baja/viajes', 'CoordinadorController@darBajaViajes')->name('darBajaViajes');
 
 /*Rutas del docente*/
 
@@ -165,6 +166,18 @@ Route::get('/docente/editar_alumnos_grupos/form/{id}', 'DocenteController@editar
 Route::put('/docente/editar_alumnos_grupos/datos/{id}', 'DocenteController@datosEditarAlumnosGrupos')->name('datosEditarAlumnosGrupos');
 
 Route::get('/docente/alumnos/grupo/{id}', 'DocenteController@verAlumnosGrupo')->name('verAlumnosGrupo');
+
+Route::get('/docente/reporte/viaje', 'DocenteController@listaReporteViaje')->name('listaReporteViaje');
+
+Route::get('/docente/reporte/viaje/{id}', 'DocenteController@reporteViajeForm')->name('reporteViajeForm');
+
+Route::put('/docente/reporte/{id}', 'DocenteController@datoReporteViaje')->name('datoReporteViaje');
+
+Route::get('/docente/reporte/viaje/editar/{id}', 'DocenteController@editarReporteViajeForm')->name('editarReporteViajeForm');
+
+Route::put('/docente/reporte/editar/{id}', 'DocenteController@datoEditarReporteViaje')->name('datoEditarReporteViaje');
+
+Route::get('/docente/reporte/ver/viaje/{id}', 'DocenteController@verReporteViaje')->name('verReporteViaje');
 
 /*Rutas del alumno*/
 

@@ -38,9 +38,15 @@
 						@endif
 					</td>
 					<td>
+
+					@if (count($viaje->manyEmpresas) > 0)
+						<a href="{{ route('editarEmpresasViajeForm', $viaje->id) }}" class="btn btn-warning btn-xs">Editar</a>
+					@else
 						<a href="{{ route('asignarEmpresasViajeForm', $viaje->id) }}" class="btn btn-success btn-xs">Asignar</a>
 
 						<a href="{{ route('editarEmpresasViajeForm', $viaje->id) }}" class="btn btn-warning btn-xs">Editar</a>
+					@endif
+					
 					</td>
 				</tr>
 			@endforeach

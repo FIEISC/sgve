@@ -22,7 +22,7 @@
 			<input type="text" name="nom_grupo" class="form-control">
 		</div>
 
-<label>Semestre</label>
+        <label>Semestre</label>
 		@if ($viaje->ciclo->ciclo === 1)
 		<div class="form-group">
 			<select name="semestre" class="form-control">

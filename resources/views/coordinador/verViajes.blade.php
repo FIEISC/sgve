@@ -22,8 +22,6 @@
          <br>
          <br>
          <br>
-         <br>
-         <br>
     @else
     	<table id="myTable" class="table table-responsive table-hover table-bordered">
 		<thead>

@@ -15,15 +15,6 @@
 
  @if (count($viajes) === 0)
  	<h3 class="text-center text-danger">No hay viajes que mostrar por el momento</h3>
- 	<br>
- 	<br>
- 	<br>
- 	<br>
- 	<br>
- 	<br>
- 	<br>
- 	<br>
- 	<br>
  @else
  	<table class="table table-hover table-bordered table-responsive">
 		<thead>

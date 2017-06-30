@@ -9,14 +9,7 @@
  
  @if (count($viajes) === 0)
     <h3 class="text-center text-danger">Viajes no encontrados, solo se mostrarán los viajes que hallan sido aceptados por el coordinador de vinculación y el director del plantel.</h3>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
     @else
      <table class="table table-bordered table-hover table-responsive">
     <thead>

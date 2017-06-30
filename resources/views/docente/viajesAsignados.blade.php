@@ -9,15 +9,6 @@
 
 	@if (count($viajes) === 0)
 		<h4 class="text-center">No has sido asignado como acompañante de ningún viaje en este ciclo escolar por el momento</h4>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
 	@else
 	<table class="table table-responsive table-hover table-bordered">
 		<thead>

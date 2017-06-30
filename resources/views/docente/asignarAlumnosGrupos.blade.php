@@ -9,15 +9,7 @@
 
 	@if (count($viajes) === 0)
 		<h3 class="text-center">No hay viajes creados en este ciclo escolar por el momento</h3>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+
 	@else
 	<table class="table table-hover table-responsive table-bordered">
 		<thead>

@@ -12,8 +12,8 @@
 	$admin->activo = 1;
 	$admin->plantel_id = 1;
 	$admin->save();
-});*/
-
+});
+*/
 
 /*Route::get('/admin/registro', function()
 {

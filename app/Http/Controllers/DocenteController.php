@@ -544,6 +544,15 @@ poder asignarles empresas que se van a visitar en ese viaje*/
       return redirect()->route('asignarAlumnosGrupos'); 
   }
 
+/*  public function verAlumnosGrupo($id)
+  {
+    $grupo = Grupo::findOrFail($id);
+
+    $alumnos = Alumno::where('semestre' => $grupo->semestre)->where('plantel_id' => $grupo->plantel_id)->where('carrera_id' => $grupo->carrera_id)->get();
+
+    return view('docente.verAlumnosGrupo', compact('alumnos'));
+  }*/
+
 /*Para ver la lista de alumnos que tiene el grupo elegido*/
   public function verAlumnosGrupo($id)
   {

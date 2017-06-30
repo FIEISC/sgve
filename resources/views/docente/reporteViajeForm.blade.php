@@ -76,14 +76,6 @@
 
   @else
   <h3 class="text-center text-danger">Todavía no puede crear el reporte del viaje, intentelo cuando el viaje halla finalizado</h3>
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
   @endif
 </div>
 

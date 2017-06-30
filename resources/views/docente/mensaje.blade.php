@@ -11,11 +11,19 @@
 		<a href="{{ route('notificaciones') }}" class="btn btn-info btn-sm">Atrás</a>
 	</div>
 </div>
-	<h1>Mensaje</h1>
-
+<br>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Mensaje</h3>
+  </div>
+  <div class="panel-body">
+    
 	<p>{{ $mensaje->mensaje }}</p>
 
-	<small>Enviado por {{ $mensaje->sender->nom_docente }}</small>
+	<small><b>Enviado por:</b> {{ $mensaje->sender->nom_docente }}</small>
+  </div>
+</div>
+
 </div>
 
 @endsection

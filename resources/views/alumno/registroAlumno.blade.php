@@ -84,23 +84,10 @@
 		</div>
 	@endif
     
-	<p><b>Nota: Recuerda que tienes que aceptar el reglamento y las condiciones de viaje o de lo contrario no podrás participar en los viajes estudiantiles</b></p>
+    <input type="hidden" name="aceptado" value="1">
 
-{{-- 
-	<div class="radio">
-		<label>
-			<input type="radio" name="aceptado" value="1">
-			Acepto
-		</label>
-	</div>
-	<div class="radio">
-		<label>
-			<input type="radio" name="aceptado" value="0">
-			No acepto
-		</label>
-	</div> --}}
 	<div class="col-xs-12" style="margin: 4px;">
-		<a href="#" data-toggle="modal" data-target="#myModal">Leer Reglamento de Viajes</a>
+		<b><a href="#" data-toggle="modal" data-target="#myModal">Leer Reglamento de Viajes</a></b>
 	</div>
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
@@ -109,7 +96,7 @@
 	    <!-- Modal content-->
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      {{--   <button type="button" class="close" data-dismiss="modal">&times;</button> --}}
 	        <h4 class="modal-title">Reglamento</h4>
 	      </div>
 	      <div class="modal-body">
@@ -165,18 +152,7 @@
 	  </div>
 
 
-
-
-
-{{--      <script>
-     	function datoAceptado()
-     	{
-     		var dato = document.getElementById("dato").value;
-             
-             alert(dato);
-     		document.getElementById("aceptado").value = dato;
-     	}
-     </script> --}}
+<p><b>Nota: Al registrarte aceptas los términos que se establecen en el reglamento de viajes estudiantiles</b></p>
 
 
 	<button type="submit" class="btn btn-primary btn-block">Registrarse</button>

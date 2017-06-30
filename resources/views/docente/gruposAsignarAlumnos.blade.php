@@ -24,6 +24,8 @@
 					<td>
 						<a href="{{ route('asignarAlumnosGruposForm', $grupo->id) }}" class="btn btn-primary btn-xs">Asignar</a>
 						<a href="{{ route('editarAlumnosGruposForm', $grupo->id) }}" class="btn btn-warning btn-xs">Editar</a>
+
+						<a href="{{ route('verAlumnosGrupo', $grupo->id) }}" class="btn btn-success btn-xs">Ver</a>
 					</td>
 				</tr>
 			@endforeach

@@ -15,13 +15,6 @@
 
     @if (count($viajes) === 0)
     	<h3 class="text-center">No hay viajes registrados en este ciclo escolar por el momento</h3>
-         <br>
-         <br>
-         <br>
-         <br>
-         <br>
-         <br>
-         <br>
     @else
     	<table id="myTable" class="table table-responsive table-hover table-bordered">
 		<thead>
@@ -53,12 +46,6 @@
 			@endforeach
 		</tbody>
 	</table>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
     @endif
 </div>
 

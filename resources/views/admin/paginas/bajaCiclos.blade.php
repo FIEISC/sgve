@@ -14,13 +14,6 @@
 
 	@if (count($ciclos) === 0)
 		<h3 class="text-center text-danger">No has ciclo escolar por dar de baja en este momento</h3>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
     @else
     <table class="table table-hover table-responsive table-bordered">
@@ -54,12 +47,6 @@
 		</tbody>
 	</table>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	@endif
 </div>
 

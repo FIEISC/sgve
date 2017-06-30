@@ -10,15 +10,6 @@
    @if (count($viajes) === 0)
    	<h3 class="text-center text-danger">Solo aparecerán los viajes que hallan sido aceptador por usted y el director del plantel y el reporte del viaje halla sido capturado.</h3>
 
-   	<br>
-   	<br>
-   	<br>
-   	<br>
-   	<br>
-   	<br>
-   	<br>
-   	<br>
-
    	@else
    		<table class="table table-responsive table-hover table-bordered">
 		<thead>
@@ -53,8 +44,6 @@
 		</tbody>
 	</table>
    @endif
-
-
 
 </div>
 

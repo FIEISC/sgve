@@ -16,16 +16,6 @@
       @endforeach
     </select>
   </form>
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
 </div>
 
 @endsection

@@ -53,7 +53,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grupos <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ route('crearGrupos') }}">Crear Grupos</a></li>
+            <li><a href="{{ route('crearGrupos') }}">Asignar Grupos</a></li>
             <li><a href="{{ route('asignarAlumnosGrupos') }}">Asignar Alumnos-Grupos</a></li>
           </ul>
         </li>

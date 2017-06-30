@@ -9,15 +9,6 @@
 
 	@if (count($docentes) === 0)
 		<h3 class="text-center text-danger">No hay usuarios por activar por el momento</h3>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 	@else
 
 	<table class="table table-responsive table-hover table-bordered">
@@ -55,10 +46,6 @@
 			@endforeach
 		</tbody>
 	</table>
-	<br>
-	<br>
-	<br>
-	<br>
 	@endif
 </div>
 

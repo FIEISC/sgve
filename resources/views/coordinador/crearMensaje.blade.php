@@ -7,7 +7,7 @@
 <div class="col-md-8 col-md-offset-2">
 	<h1 class="text-center">Crear Mensaje</h1>
 
-	<div class="panel panel-default">
+	<div class="panel panel-success">
 		<div class="panel-heading">Enviar mensaje</div>
 		<div class="panel-body">
 		<form action="{{ route('datosMensaje') }}" method="POST">

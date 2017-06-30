@@ -1,23 +1,4 @@
-@extends('modulos.plantilla')
-
-@section('title', 'Viaje | SGVE')
-
-@section('contenido')
-
-<div class="col-md-10 col-md-offset-1">
-
-<div class="row">
-	<div class="col-md-1 col-md-offset-11">
-		<a href="{{ route('darBajaViajes') }}" class="btn btn-info btn-sm">Atrás</a>
-	</div>
-</div>
-<br>	
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Información del viaje</h3>
-  </div>
-  <div class="panel-body">
-    <h3>Nombre del viaje</h3>
+<h3>Nombre del viaje</h3>
     <p>{{ $viaje->nom_viaje }}</p>
 
     <h3>Motivos del viaje</h3>
@@ -60,23 +41,8 @@
 
 	<h3>Evidencias</h3>
 
-	<img class="img-rounded img-responsive" style="width: 500px; height: 300px; padding: 10px; margin: auto;" src="{{ Storage::url($viaje->imagen1) }}" alt="">
-   <img class="img-rounded img-responsive" style="width: 500px; height: 300px; padding: 10px; margin: auto;" src="{{ Storage::url($viaje->imagen2) }}" alt="">
+	<img style="width: 500px; height: 300px; padding: 10px; margin: auto;" src="{{ Storage::url($viaje->imagen1) }}" alt="">
+  {{--  <img class="img-rounded img-responsive" style="width: 500px; height: 300px; padding: 10px; margin: auto;" src="{{ Storage::url($viaje->imagen2) }}" alt="">
    <img class="img-rounded img-responsive" style="width: 500px; height: 300px; padding: 10px; margin: auto;" src="{{ Storage::url($viaje->imagen3) }}" alt="">
    <img class="img-rounded img-responsive" style="width: 500px; height: 300px; padding: 10px; margin: auto;" src="{{ Storage::url($viaje->imagen4) }}" alt="">
-   <img class="img-rounded img-responsive" style="width: 500px; height: 300px; padding: 10px; margin: auto;" src="{{ Storage::url($viaje->imagen5) }}" alt="">
-
-  </div>
-</div>
-
-  <a href="{{ route('viajePDF', $viaje->id) }}" class="btn btn-primary btn-sm">Descargar</a>
-  <br>
-
-<div class="row">
-	<div class="col-md-1 col-md-offset-11">
-		<a href="{{ route('darBajaViajes') }}" class="btn btn-info btn-sm">Atrás</a>
-	</div>
-</div>
-</div>
-
-@endsection
+   <img class="img-rounded img-responsive" style="width: 500px; height: 300px; padding: 10px; margin: auto;" src="{{ Storage::url($viaje->imagen5) }}" alt=""> --}}

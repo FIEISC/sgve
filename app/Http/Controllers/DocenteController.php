@@ -132,8 +132,17 @@ class DocenteController extends Controller
     {
         $viaje = Viaje::findOrFail($id);
         $docentes = User::where('id', '!=', Auth::user()->id)->where('rol', '!=', 0)->where('rol', '!=', 1)->where('plantel_id', '=', Auth::user()->plantel_id)->get();
+
+        $carreras = Carrera::where('plantel_id', '=', Auth::user()->plantel_id)->get();
+
+        if (count($carreras) === 0) 
+        {
+            Alert::info('Ponerse en contacto con el administrador para registrar al menos una carrera', 'Carreras no encontradas');
+
+            return redirect()->back();
+        }
         
-        return view('docente.editarViaje', compact('viaje', 'docentes'));
+        return view('docente.editarViaje', compact('viaje', 'docentes', 'carreras'));
     }
 
     public function datosEditarViaje(Request $request, $id)
@@ -144,6 +153,7 @@ class DocenteController extends Controller
         $impacto = $request->input('impacto');
         $fec_ini = $request->input('fec_ini');
         $fec_fin = $request->input('fec_fin');
+        $carrera_id = $request->input('carrera_id');
         $compa = $request->input('compa');
 
         if ($compa === null) 
@@ -159,6 +169,7 @@ class DocenteController extends Controller
             'impacto' => $impacto,
             'fec_ini' => $fec_ini,
             'fec_fin' => $fec_fin,
+            'carrera_id' => $carrera_id,
             'compa' => $compa,
             ]);
 

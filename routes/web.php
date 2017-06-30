@@ -109,7 +109,13 @@ Route::get('/coordinador/baja/viajes', 'CoordinadorController@darBajaViajes')->n
 
 Route::get('/coordinador/viaje/ver/{id}', 'CoordinadorController@verViajeCompleto')->name('verViajeCompleto');
 
+Route::get('/coordinador/viaje/pdf/{id}', 'CoordinadorController@viajePDF')->name('viajePDF');
+
 Route::put('/coordinador/viaje/baja/{id}', 'CoordinadorController@darBajaViaje')->name('darBajaViaje');
+
+Route::get('/coordinador/crear/mensaje', 'CoordinadorController@crearMensaje')->name('crearMensaje');
+
+Route::post('/coordinador/mensaje', 'CoordinadorController@datosMensaje')->name('datosMensaje');
 
 /*Rutas del docente*/
 
@@ -182,6 +188,16 @@ Route::get('/docente/reporte/viaje/editar/{id}', 'DocenteController@editarReport
 Route::put('/docente/reporte/editar/{id}', 'DocenteController@datoEditarReporteViaje')->name('datoEditarReporteViaje');
 
 Route::get('/docente/reporte/ver/viaje/{id}', 'DocenteController@verReporteViaje')->name('verReporteViaje');
+
+/*Notificaciones (mensajes del docente)*/
+
+Route::get('/docente/mensajes', 'NotificacionController@notificaciones')->name('notificaciones');
+
+Route::get('/docente/mensaje/{id}', 'NotificacionController@notificacionMostrar')->name('notificacionMostrar');
+
+Route::patch('/docente/mensaje/leido/{id}', 'NotificacionController@leidaNotificacion')->name('leidaNotificacion');
+
+Route::delete('/docente/mensaje/borrar/{id}', 'NotificacionController@borrarNotificacion')->name('borrarNotificacion');
 
 /*Rutas del alumno*/
 

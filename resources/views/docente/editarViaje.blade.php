@@ -44,6 +44,16 @@
 		</div>
 
 		<div class="form-group">
+		<label for="carrera">Carrera</label>
+			<select name="carrera_id" id="carrera" class="form-control">
+			    <option value="">Elegir carrera</option>
+				@foreach ($carreras as $carrera)
+					<option value="{{ $carrera->id }}">{{ $carrera->nom_carrera }}</option>
+				@endforeach
+			</select>
+		</div>
+
+		<div class="form-group">
 			<label for="compa">Docente acompañante</label>
 			<select name="compa" id="compa" class="form-control">
 				<option value="">Elegir docente</option>

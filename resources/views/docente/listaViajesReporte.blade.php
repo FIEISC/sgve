@@ -32,14 +32,11 @@
           <td>{{ $viaje->nom_viaje }}</td>
           <td>
 
-            @if ($viaje->reporte != null)
-            <a href="{{ route('editarReporteViajeForm', $viaje->id) }}" class="btn btn-warning btn-sm">Editar reporte</a>
+            @if ($viaje->reporte == null)
 
-            <a href="{{ route('verReporteViaje', $viaje->id) }}" class="btn btn-info btn-sm">Ver reporte</a>
+             <a href="{{ route('reporteViajeForm', $viaje->id) }}" class="btn btn-primary btn-sm">Crear reporte</a>
 
             @else
-
-            <a href="{{ route('reporteViajeForm', $viaje->id) }}" class="btn btn-primary btn-sm">Crear reporte</a>
 
             <a href="{{ route('editarReporteViajeForm', $viaje->id) }}" class="btn btn-warning btn-sm">Editar reporte</a>
 

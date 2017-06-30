@@ -30,6 +30,8 @@
           </ul>
         </li>
 
+        <li><a href="{{ route('crearMensaje') }}">Mensajes</a></li>
+
          @elseif(Auth::user()->hasRoles(['3']))
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Viajes <span class="caret"></span></a>
@@ -57,6 +59,7 @@
         </li>
 
          <li><a href="{{ route('viajesAsignados') }}">Viajes asignados</a></li>
+         <li><a href="{{ route('notificaciones') }}">Mensajes <span class="badge">{{ Auth::user()->unreadNotifications->count() }}</span></a></li>
          @endif
       
       </ul>

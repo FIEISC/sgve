@@ -33,6 +33,29 @@
 			<p>{{ $viaje->user->nom_docente }}</p>
 			<h3>Carrera</h3>
 			<p>{{ $viaje->carrera->nom_carrera }}</p>
+
+			<h3>Empresas a visitar</h3>
+
+			@if (count($viaje->manyEmpresas) === 0)
+				<p>No tiene empresas asignadas por el momento</p>
+			@else
+			@foreach ($viaje->manyEmpresas as $empresa)
+			<ul>
+				<li style="list-style: none;">{{ $empresa->nom_empresa }}</li>
+			</ul>
+			@endforeach
+			@endif
+            
+            <h3>Grupos que viajaran</h3>
+			@if (count($viaje->grupos) === 0)
+				<p>No tiene grupos asigandos por el momento</p>
+			@else
+			@foreach ($viaje->grupos as $grupo)
+				<ul>
+					<li style="list-style: none;">{{ $grupo->nom_grupo }}</li>
+				</ul>
+			@endforeach
+			@endif
 		</div>
 	</div>
 </div>

@@ -32,6 +32,9 @@
 			<h3>Docente acompañante</h3>
 			<p>{{ $viaje->compa }}</p>
 
+			<h3>Carrera</h3>
+			<p>{{ $viaje->carrera->nom_carrera }}</p>
+
 			<h3>Empresas a visitar</h3>
 
 			@if (count($viaje->manyEmpresas) === 0)
